@@ -45,30 +45,29 @@ while ten > 0:
                     
                         opc = input(f"Deseja Realmente Finalizar?? (S= Sim e N= Não)\n")
                         
-                        if opc == "S" and "s":
+                        if opc == "S" or "s":
                             itn -= 1
                             print(f"Venda Finalizada {itn} itens")
                             print(total)
                             val = 1
                             ten_opc = 0
                             
-                        elif opc == "N" and "n":
+                        elif opc == "N" or "n":
                             itn -=1
                             val = 0
                             ten_opc = 0
                         else:
+
                             ten_opc -= 1
+
                             if ten_opc == 0:
-                                 exit()
+                                 print("Tentativas demais, Ecerranto programa... ")
+                                 exit() 
+
                             else:
                                 print("Opção não existe, tente novamente")
                                 print(f"Tentativas restantes {ten_opc}")
 
-                            
-
-                            
-                    
-                         
 
                  elif val_itn == -1:
                          
