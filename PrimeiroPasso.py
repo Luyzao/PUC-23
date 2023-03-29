@@ -30,12 +30,12 @@ while ten > 0:
             total = 0
 
             while val == 0:
-                 itn += 1
-                 val_itn = float(input(f"Digite o valor do item {itn}: R$"))
-                 total += val_itn
+                itn += 1
+                val_itn = float(input(f"Digite o valor do item {itn}: R$"))
+                total += val_itn 
 
 
-                 if val_itn == 0:
+                if val_itn == 0:
 
                     ten_opc = 3
 
@@ -45,14 +45,14 @@ while ten > 0:
                     
                         opc = input(f"Deseja Realmente Finalizar?? (S= Sim e N= Não)\n")
                         
-                        if opc == "S" or "s":
+                        if opc == "S" or opc =="s":
                             itn -= 1
                             print(f"Venda Finalizada {itn} itens")
                             print(total)
                             val = 1
                             ten_opc = 0
                             
-                        elif opc == "N" or "n":
+                        elif opc == "N" or opc == "n":
                             itn -=1
                             val = 0
                             ten_opc = 0
@@ -69,8 +69,12 @@ while ten > 0:
                                 print(f"Tentativas restantes {ten_opc}")
 
 
-                 elif val_itn == -1:
+                elif val_itn == -1:
                          
-                         itn -= 1
-                         val_cor = float(input(f"Escreva o valor correto do iten {itn}: R$"))
+                    itn -= 1
+                    val_cor = float(input(f"Escreva o valor correto do iten {itn}: R$"))
+                         
+                    val_itn -= val_cor
+
+                         
                          
