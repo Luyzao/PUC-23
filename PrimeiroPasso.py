@@ -32,6 +32,7 @@ while ten > 0:
             while val == 0:
                 itn += 1
                 val_itn = float(input(f"Digite o valor do item {itn}: R$"))
+                
                 total += val_itn 
 
 
@@ -73,8 +74,10 @@ while ten > 0:
                          
                     itn -= 1
                     val_cor = float(input(f"Escreva o valor correto do iten {itn}: R$"))
-                         
-                    val_itn -= val_cor
+                    itn += 1    
+                    total -= val_itn
+                    total += val_cor
+                   
 
                          
                          
