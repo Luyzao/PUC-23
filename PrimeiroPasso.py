@@ -36,18 +36,40 @@ while ten > 0:
 
 
                  if val_itn == 0:
+
+                    ten_opc = 3
+
+                    while ten_opc > 0: 
+
+                        
                     
-                    opc = input(f"Deseja Realmente Finalizar?? (S= Sim e N= Não)\n")
+                        opc = input(f"Deseja Realmente Finalizar?? (S= Sim e N= Não)\n")
+                        
+                        if opc == "S" and "s":
+                            itn -= 1
+                            print(f"Venda Finalizada {itn} itens")
+                            print(total)
+                            val = 1
+                            ten_opc = 0
+                            
+                        elif opc == "N" and "n":
+                            itn -=1
+                            val = 0
+                            ten_opc = 0
+                        else:
+                            ten_opc -= 1
+                            if ten_opc == 0:
+                                 exit()
+                            else:
+                                print("Opção não existe, tente novamente")
+                                print(f"Tentativas restantes {ten_opc}")
+
+                            
+
+                            
                     
-                    if opc == "S":
-                         itn -= 1
-                         print(f"Venda Finalizada {itn} itens")
-                         print(total)
-                         val = 1
                          
-                    else:
-                         itn -=1
-                         val = 0
+
                  elif val_itn == -1:
                          
                          itn -= 1
