@@ -28,15 +28,19 @@ while ten > 0:
             itn = 0
             val_itn = 0
             total = 0
+            tudo = 0
 
             while val == 0:
                 itn += 1
                 val_itn = float(input(f"Digite o valor do item {itn}: R$"))
                 
-                total += val_itn 
+                if val_itn > 0:
+
+                    total = tudo
+                    tudo = tudo + val_itn
 
 
-                if val_itn == 0:
+                elif val_itn == 0:
 
                     ten_opc = 3
 
@@ -49,7 +53,7 @@ while ten > 0:
                         if opc == "S" or opc =="s":
                             itn -= 1
                             print(f"Venda Finalizada {itn} itens")
-                            print(total)
+                            print(tudo)
                             val = 1
                             ten_opc = 0
                             
@@ -73,11 +77,11 @@ while ten > 0:
                 elif val_itn == -1:
                          
                     itn -= 1
-                    val_cor = float(input(f"Escreva o valor correto do iten {itn}: R$"))
-                    itn += 1    
-                    total -= val_itn
-                    total += val_cor
-                   
+                
+                    print(f"Escreva o valor correto do iten {itn}: R$")
+
+                    tudo = total
+                    
 
                          
                          
