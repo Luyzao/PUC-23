@@ -81,6 +81,15 @@ while ten > 0:
                     print(f"Escreva o valor correto do iten {itn}: R$")
 
                     tudo = total
+   #FINALIZAÇÃO  DA VENDA E CALCULO DO TROCO:
+
+            print("VENDA FINALIZADA")
+            print(f"O valor total é: R$ {tudo:.2f}")
+
+            val_pago = float(input(f"Valor pago: R$ "))
+            troco = val_pago - tudo
+            if troco == 200 or 100 or 50 or 5 or 2 or 1 or 0.5:
+                print(f"O valor do troco: R$ {troco:.2f} ")
                     
 
                          
