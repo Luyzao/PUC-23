@@ -66,7 +66,7 @@ while ten > 0:
                             ten_opc -= 1
 
                             if ten_opc == 0:
-                                 print("Tentativas demais, Ecerranto programa... ")
+                                 print("Tentativas demais, Encerranto programa... ")
                                  exit() 
 
                             else:
