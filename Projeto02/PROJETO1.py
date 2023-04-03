@@ -81,19 +81,21 @@ while fim == "N" or fim =="n":
 
 print (f"Valor total: {soma_valor:.2f}")
 valor_pago = (float(input("Insira o valor pago: ")))
-
+# Sem troco
 if valor_pago == soma_valor:
     print("Nao há troco!!")
 
+#Valor pago inferior 
 elif valor_pago < soma_valor:
     print("Valor insuficiente!")
-
+#troco 
 elif valor_pago>soma_valor:
     troco = valor_pago - soma_valor
     print(f"Troco: {troco:.2f} ")
 
+
 #troco
-#         
+
 
 
 
