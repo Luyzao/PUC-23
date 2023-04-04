@@ -132,7 +132,7 @@ while ten > 0:
 
                                     elif opc == "N" or opc == "n":
                                         print('CONTINUANDO VENDAS...')
-                                        continue
+                                        
 
                                     
                                 elif opc == "N" or opc == "n":
