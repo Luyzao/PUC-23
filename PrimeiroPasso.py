@@ -52,7 +52,7 @@ while ten > 0:
                         
                         if opc == "S" or opc =="s":
                             itn -= 1
-                            print(f"Venda Finalizada em R${itn} itens")
+                            print(f"Venda Finalizada com {itn} itens")
                             print(tudo)
                             val = 1
                             ten_opc = 0
