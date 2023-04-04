@@ -27,11 +27,12 @@ um50 = 0
 
 while troco > 0:
         
-    if troco >=200 and nota200 < 2:
+    if troco >=200 and nota200 < 1:
 
         duz = int(troco/200)
         troco = troco - (duz * 200)
         nota200 += 1
+        
 
     elif troco >= 100 and nota100 < 4:
 
@@ -77,6 +78,6 @@ while troco > 0:
         
                 
 print(f"NOTA 200: {duz}\nNOTA 100: {cem}\nNOTA 50: {cin}\nNOTA 10: {dez}\nNOTA 5: {cinco}\nNOTA 1: {um}\nNOTA 0.5: {um50}\nQUANTIDADE QUE RESTA NO CAIXA: {res} ")
-    
+print(nota200)   
             
 
