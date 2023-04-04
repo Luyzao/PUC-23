@@ -2,6 +2,7 @@
 
 while True:
 
+    print("INSIRA AS AMOSTRAS")
     mp10 = int(input("MP10: "))
     mp2_5 = int(input("MP2,5: "))
     o3 = int(input("O3: "))
@@ -11,8 +12,9 @@ while True:
 
     res = (mp10+mp2_5+o3+co+no2+so2)/6
     
-    if mp10 < 0 or mp2_5 < 0 or o3 < 0 or co < 0 or no2< 0 or so2 < 0:
+    if mp10 < 0 and mp10 == str or mp2_5 < 0 or o3 < 0 or co < 0 or no2< 0 or so2 < 0:
         print("ALGUM INDICE ESTA COM O VALOR INCOMPATIVEL \n REESCREVA OS DADOS POR FAVOR")
+        raise ValueError("Nota fora do range permitido")
         continue
     else:
         if res >= 0 and res <= 40:

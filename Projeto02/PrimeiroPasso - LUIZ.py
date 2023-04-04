@@ -114,7 +114,7 @@ while ten > 0:
                                             
                             print(f"NOTA 200: {nota200}\nNOTA 100: {nota100}\nNOTA 50: {nota50}\nNOTA 10: {nota10}\nNOTA 5: {nota5}\nNOTA 1: {nota1}\nNOTA 0.5: {nota0_5}\nQUANTIDADE QUE RESTA NO CAIXA: {res} ")
  
-
+                            print("DESEJA FECHAR O CAIXA?")
 
                             
                         elif opc == "N" or opc == "n":
