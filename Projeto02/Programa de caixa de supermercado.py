@@ -4,16 +4,23 @@ password_correta = 1234
 ten = 3
 
 while ten > 0:
-        password = int(input("Dígite sua senha para abrir o caixa: "))        
+        
+        password = int(input("Dígite sua senha para abrir o caixa: "))  
+
         if password != password_correta:
+
             if ten == 1:
-                 break
+                break
+            
             else:
                 ten -= 1
-            print(f"VC TEM DIREITO A MAIS {ten} TENTATIVAS")             
+
+            print(f"VC TEM DIREITO A MAIS {ten} TENTATIVAS")  
+
         else:
             ten = 0
             print(f"Senha Correta \n Caixa Aberto!")
+
             break
 
 #SEGUNDO PASSO - LEITURA DAS VENDAS
