@@ -1,182 +1,70 @@
-#Primeiro Passo - Abrir o caixa
-
+#PRIMEIRO PASSO - ABRIR O CAIXA
 print(f"\tBem-Vindo!!!")
-
 password_correta = 1234
 ten = 3
 
 while ten > 0:
-
-        password = int(input("Dígite sua senha para abrir o caixa: "))
-        
+        password = int(input("Dígite sua senha para abrir o caixa: "))        
         if password != password_correta:
-        
             if ten == 1:
-                break
+                 break
             else:
                 ten -= 1
-            print(f"VC TEM DIREITO A MAIS {ten} TENTATIVAS")
-             
+            print(f"VC TEM DIREITO A MAIS {ten} TENTATIVAS")             
         else:
             ten = 0
             print(f"Senha Correta \n Caixa Aberto!")
-            print(f"Dinheiro para troco: R$1280,00")
+            break
 
-            print("INSERÇÃO DOS ITENS VENDIDOS")
+#SEGUNDO PASSO - LEITURA DAS VENDAS
+#o caixa recebe: R$1280 para o troco;
 
-            val = 0
-            itn = 0
-            val_itn = 0
-            total = 0
-            tudo = 0
+print("\n\n\tINSERCAO DOS ITENS VENDIDOS\n")
+print("Para finalizar a compra digite '0' e em seguida 'SIM' ")
+print("Para alterar o valor de um item digite '-1' \n\n")
 
-            while val == 0:
-                itn += 1
-                val_itn = float(input(f"Digite o valor do item {itn}: R$"))
-                
-                if val_itn > 0:
-
-                    total = tudo
-                    tudo = tudo + val_itn
+#quantidade dos itens vendidos
+item = 0
+#soma total dos itens
+soma_valor = 0
+valor_item = 0
+fim = "N"
+fim_do_caixa = "N"
 
 
-                elif val_itn == 0:
+while fim == "N" or fim == "n" and fim_do_caixa == "N" or "n": #Não quero quero finalizar determinada venda E não quero fechar o caixa
+    item += 1
+    soma_valor+=valor_item
+    valor_item = float(input(f"Digite o valor do item {item}: R$"))
 
-                    ten_opc = 3
+    if valor_item < -1:
+        soma_valor-=valor_item
+        print ("Digite um valor valido!")
 
-                    while ten_opc > 0: 
+    elif valor_item == 0:
+        ten_opc = 2                                    
+        fim = input(f"Deseja Realmente Finalizar?? (S= Sim e N= Não)\n")
+        #se digitar sim, o programa dá um break e irá para a terceira parte.
+        if fim == "S" or fim =="s":
+                item -= 1
+                print(f"Venda Finalizada {item} itens")
+                ten_opc = 0
+                print("VENDA FINALIZADA")
+                print(f"O valor total é: R$ {soma_valor:.2f}")
+                valor_pago = float(input(f"Valor pago: R$ "))
+                troco = valor_pago - soma_valor
 
-                        
-                    
-                        opc = input(f"Deseja Realmente Finalizar?? (S= Sim e N= Não)\n")
-                        
-                        if opc == "S" or opc =="s":
-                            itn -= 1
-                            print(f"Venda Finalizada {itn} itens")
-                            print(tudo)
-                            val = 1
-                            ten_opc = 0
-                            
-                        elif opc == "N" or opc == "n":
-                            itn -=1
-                            val = 0
-                            ten_opc = 0
-                        else:
+                if troco == 0.00:
+                    print(f"NÃO HÁ TROCO")
+                elif troco == 200 or 100 or 50 or 5 or 2 or 1 or 0.5:
+                    print(f"O valor do troco: R$ {troco:.2f} ")
 
-                            ten_opc -= 1
-
-                            if ten_opc == 0:
-                                 print("Tentativas demais, Encerranto programa... ")
-                                 exit() 
-
-                            else:
-                                print("Opção não existe, tente novamente")
-                                print(f"Tentativas restantes {ten_opc}")
-
-
-                elif val_itn == -1:
-                         
-                    itn -= 1
-                
-                    print(f"Escreva o valor correto do iten {itn}: R$")
-
-                    tudo = total
-   #FINALIZAÇÃO  DA VENDA E CALCULO DO TROCO:
-
-            print("VENDA FINALIZADA")
-            print(f"O valor total é: R$ {tudo:.2f}")
-
-            val_pago = float(input(f"Valor pago: R$ "))
-            troco = val_pago - tudo
-            if troco == 0.00:
-                print(f"NÃO HÁ TROCO")
-            elif troco == 200 or 100 or 50 or 5 or 2 or 1 or 0.5:
-                print(f"O valor do troco: R$ {troco:.2f} ")
-                #falta especificar as cédulas do troco
-
-#FECHAR O CAIXA:
-            total_clientes = 0
-            valtotal_vendas = 0
-            valor_caixa = 0 
-            opc2 = input(f"Deseja fechar o caixa? (S= Sim e N= Não)\n")
-
-        if opc2 == "N" or "n":
-                    print(f"Caixa não fechado!")
-                    print("INSERÇÃO DOS ITENS VENDIDOS")
-
-                    val = 0
-                    itn = 0
-                    val_itn = 0
-                    total = 0
-                    tudo = 0
-
-                    while val == 0:
-                        itn += 1
-                        val_itn = float(input(f"Digite o valor do item {itn}: R$"))
-                
-                        if val_itn > 0:
-
-                            total = tudo
-                            tudo = tudo + val_itn
-
-
-                        elif val_itn == 0:
-
-                            ten_opc = 3
-
-                            while ten_opc > 0: 
-
-                        
-                    
-                                opc = input(f"Deseja Realmente Finalizar?? (S= Sim e N= Não)\n")
-                        
-                                if opc == "S" or opc =="s":
-                                    itn -= 1
-                                    print(f"Venda Finalizada {itn} itens")
-                                    print(tudo)
-                                    val = 1
-                                    ten_opc = 0
-                            
-                                elif opc == "N" or opc == "n":
-                                    itn -=1
-                                    val = 0
-                                    ten_opc = 0
-                                else:
-
-                                    ten_opc -= 1
-
-                                    if ten_opc == 0:
-                                        print("Tentativas demais, Ecerranto programa... ")
-                                        exit() 
-
-                                    else:
-                                        print("Opção não existe, tente novamente")
-                                        print(f"Tentativas restantes {ten_opc}")
-
-
-                        elif val_itn == -1:
-
-                         itn -= 1
-                         print(f"Escreva o valor correto do iten {itn}: R$")
-
-                         tudo = total
-   #FINALIZAÇÃO  DA VENDA E CALCULO DO TROCO:
-
-                    print("VENDA FINALIZADA")
-                    print(f"O valor total é: R$ {tudo:.2f}")
-
-                    val_pago = float(input(f"Valor pago: R$ "))
-                    troco = val_pago - tudo
-                    if troco == 0.00:
-                        print(f"NÃO HÁ TROCO")
-                    elif troco == 200 or 100 or 50 or 5 or 2 or 1 or 0.5:
-                        print(f"O valor do troco: R$ {troco:.2f} ")
-                #falta especificar as cédulas do troco
-                #Essa não é a maneira mais clean de fazer o código, ficou bem confuso!
-
-        elif opc2 == "S" or "s":
-            print(f"Fechamento do caixa!!!")
-            total_clientes += 1
-
-
-
+        fim_do_caixa = input("Deseja fechar o caixa? (S = Sim e N = Não)\n")
+        if fim_do_caixa == 'S' or fim_do_caixa == "s":
+            print("Caixa fechado!")
+            break
+        else:
+            item -= 1
+    elif valor_item == -1:
+        print(f"Escreva o valor correto do item {item}: R$")
+        item -= 1

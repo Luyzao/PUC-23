@@ -1,16 +1,13 @@
 #Primeiro Passo - ABRIR O CAIXA
 
 print("\n\n\t Bem-Vindo!!!\n\n")
-
 senha = 1234
 t=0
-
 while t<3:
     t+=1
     senha2=(int(input("Digite sua senha para abrir o caixa: ")))
     if senha!=senha2:
         print("\n\tSENHA INCORRETA\n\n")
-
         if t==1:
             print("Voce tem mais DUAS tentativas...\n")
         elif t==2:
