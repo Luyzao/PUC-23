@@ -305,7 +305,7 @@ while ten > 0:
                                     controle = 1
                                     
                                 else :
-                                    print("\n\t-- VALOR INVALIDO --")
+                                    print("\n\t-- VALOR INVALIDO --\n")
                                                 
 
                                             
@@ -318,16 +318,22 @@ while ten > 0:
                             
                             
                         else :
-                            print("\n\t-- VALOR INVALIDO --")
+                            print("\n\t-- VALOR INVALIDO --\n")
                             
 
                 elif val_itn == -1:
                                 
                     itn -= 2
-                        
-                    print(f"\n\tEscreva o valor correto do iten {itn}: R$")
 
                     tudo = total
+                    
+                elif val_itn < -1:
+                    
+                    print("\n\t-- VALOR INVALIDO --\n")
+                    
+                    itn -= 1
+                    
+                   
 
 
 
