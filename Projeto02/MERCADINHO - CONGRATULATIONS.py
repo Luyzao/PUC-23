@@ -1,12 +1,12 @@
-#Perguntar para ela se o usuario mesmo pode definir a senha ou se colocamos um codigo secreto?
-#ao finalizar deve retornar o valor total de venda, o valor total de troco que sobrou ou os dois juntos
+
+
 ##valores negativos estao entrando fora -1
-## o valor quando alterado não esta entrando. digita -1, ele pede o valor correto este valor entra no item seguinte e não no anterior
+
 ##falta mensagem de valor insuficiente para pagamento
-## quando digitado um valor acima do troco disponivel o sistema para e nao finaliza
-##mensagem para numero de tentativas finalizadas -- "REINICIE O PROGRAMA E TENTE NOVAMENTE"
+
+## quando digitado um valor acima do troco disponivel o sistema para e nao finaliza(digitar valor <= 200)
+
 ##mensagem para caso que nao exista troco
-##formatação dos || conferir no fechamento do caixa
 
 
 # ABRINDO CAIXA(PEDINDO NOVA SENHA PARA USUARIO E DEPOIS VERIFICANDO A SENHA DEFINIDA)
@@ -14,7 +14,7 @@
 print(f"\n\t||||||||||||||||||||||||||\n\t|| B e m - V i n d o!!! ||\n\t||||||||||||||||||||||||||\n")
 
 # Variavel para deifinir a senha do caixa
-senha = int(input(f"\n\t Defina uma nova senha de 4 digitos: "))
+senha = 1234
 
 # Variavel para quantidade de tentativas
 ten =3 
@@ -74,204 +74,238 @@ while ten > 0:
 
 
                 elif val_itn == 0:
+                    
+                    controle = 0
+                    
+                    while controle == 0:
 
-                    ten_opc = 3
-
-                    opc = input(f"\n\n\tDeseja Realmente Finalizar?? (S= Sim e N= Não): ")
-                                
-                    if opc == "S" or opc =="s":
+                        opc = input(f"\n\n\tDeseja Realmente Finalizar?? (S= Sim e N= Não): ")
                                     
-                        itn -= 1
-
-                        
-                        print(f"\n\t||||||||||||||||||||||||||||||||||||\n\t|| Venda Finalizada com {itn} itens   ||")
-                        print(f"\t|| Valor total da compra: R${tudo} ||\n\t||||||||||||||||||||||||||||||||||||\n")
-
-
-                        pessoa += 1
-                        somaTotal += tudo
-                        itn = 0
-                        ten_opc = 0
-
-                        pagar = float(input(f"\tInsira a quantia para fazer o pagamento: "))
-
-                        troco = pagar - tudo
-                        valorTotal = 1280
-                        res = valorTotal - troco
-                        tudo = 0
-                        trocoTotal -= troco
-
-                        print(f"\n\tValor do troco: R${troco}\n")
-
-
-# SISTEMA DE TROCO DO CAIXA
-
-                        nota200 = 0
-                        res200 = 2
-
-                        nota100 = 0
-                        res100 = 4
-
-                        nota50 = 0
-                        res50 = 6
-
-                        nota10 = 0
-                        res10 = 10
-
-                        nota5 = 0
-                        res5 = 10
-
-                        nota1 = 0
-                        res1 = 20
-
-                        nota0_5 = 0
-                        res0_5 = 20
-
-                        while troco > 0:
-                
-                            if troco >=200 and nota200 < 2:
-
-                                troco -= 200
-                                nota200 += 1
-                                res200 -= 1 
-                                            
-                            elif troco >= 100 and nota100 < 4:
-
-                                troco -= 100
-                                nota100 += 1
-                                res100 -= 1 
-
-                            elif troco >= 50 and nota50 < 6:
-
-                                troco -= 50
-                                nota50 += 1
-                                res50 -= 1 
-
-                            elif troco >= 10 and nota10 < 10:
-
-                                troco -= 10
-                                nota10 += 1
-                                res10 -= 1 
-
-                            elif troco >= 5 and nota5 < 10:
-
-                                troco -= 5
-                                nota5 += 1
-                                res5 -= 1 
-                                        
-
-                            elif troco >= 1 and nota1 < 20:
-
-                                troco -= 1
-                                nota1 += 1
-                                res1 -= 1 
-
-                            elif troco >= 0.5 and nota0_5 < 20:
-
-                                troco -= 0.5
-                                nota0_5 += 1
-                                res0_5 -= 1 
-
-
-                        print('\t||||||||||||||||||||||\n\t||       TROCO      ||\n\t||||||||||||||||||||||')                   
-
-                        if nota200 != 0:
-                              
-                              print(f"\t|| Notas de 200: {nota200}  ||")
-                              
-                        if nota100 != 0:
-                              
-                              print(f"\t|| Notas de 100: {nota100}  ||")
-                        
-                        if nota50 != 0:
-                              
-                              print(f"\t|| Notas de 50: {nota50}   ||")
-
-                        if nota10 != 0:
-                              
-                              print(f"\t|| Notas de 10: {nota10}   ||")
-                        
-                        if nota5 != 0:
-                              
-                              print(f"\t|| Notas de 5: {nota5}    ||")
-
-                        if nota1 != 0:
-                              
-                              print(f"\t|| Moedas de 1: {nota1}   ||")
-
-                        if nota0_5 != 0:
-                              
-                              print(f"\t|| Moedas de 0.5: {nota0_5}  ||")
-
-                        print('\t||||||||||||||||||||||')    
-
-# FECHAMENTO DO CAIXA 
-
-                        opc = input(f"\n\tDESEJA FECHAR O CAIXA? (S= Sim e N= Não)")
-
                         if opc == "S" or opc =="s":
-
-
                                         
-                            print(f"\n\t||||||||||||||||||||||||||||\n\t|| FECHAMENTO DO CAIXA!!! ||\n\t||||||||||||||||||||||||||||\n\n")
-                            print("\tInformações: ")
-                            print(f"\n\t|||||||||||||||||||||||||||||||||||||\n\t|| Número de cliente: {venda}            ||")
-                            print(f"\t|| Valor total das Vendas: R${somaTotal} ||\n\t|||||||||||||||||||||||||||||||||||||")
-                            print(f"\t|| Valor existente no caixa: {trocoTotal} ||")
+                            itn -= 1
+                            controle = 1
 
-                            if res200 != 0:
-                                
-                                print(f"\t|| Notas de 200: {res200}                 ||")
-                                
-                            if res100 != 0:
-                                
-                                print(f"\t|| Notas de 100: {res100}                 ||")
                             
-                            if res50 != 0:
-                                
-                                print(f"\t|| Notas de 50: {res50}                  ||")
+                            print(f"\n\t||||||||||||||||||||||||||||||||||||\n\t|| Venda Finalizada com {itn} itens   ||")
+                            print(f"\t|| Valor total da compra: R${tudo} ||\n\t||||||||||||||||||||||||||||||||||||\n")
 
-                            if res10 != 0:
-                                
-                                print(f"\t|| Notas de 10: {res10}                  ||")
+
+                            pessoa += 1
+                            somaTotal += tudo
+                            itn = 0
+                            ten_opc = 0
                             
-                            if res5 != 0:
-                                
-                                print(f"\t|| Notas de 5: {res5}                  ||")
+                            controle = 0
 
-                            if res1 != 0:
-                                
-                                print(f"\t|| Moedas de 1: {res1}                 ||")
+                            while controle == 0:
 
-                            if res0_5 != 0:
-                                
-                                print(f"\t|| Moedas de 0.5: {res0_5}               ||")
+                                    pagar = float(input(f"\tInsira a quantia para fazer o pagamento: R$"))
 
-                            print('\t|||||||||||||||||||||||||||||||||||||')    
+                                    if pagar > 0:
 
-                            print("\n\tAté breve........\n\n")
-
-                            break
-
-                        elif opc == "N" or opc == "n":
+                                        troco = pagar - tudo
                                         
-                            print(f'\n\tCONTINUANDO VENDAS...\n')
-
-                            venda += 1
-
-                            print(f"\n\t||||||||||||||||||||||||||||||||||||\n\t|| INSIRA OS VALORES DA {venda}° COMPRA ||\n\t||||||||||||||||||||||||||||||||||||")
-
-                            controle += 1
+                                        if pagar >= tudo:
                                         
+                                            valorTotal = 1280
+                                            res = valorTotal - troco
+                                            tudo = 0
+                                            trocoTotal -= troco
+                                            controle = 1
+                                        
+                                            print(f"\n\tValor do troco: R${troco}\n")
+                                            
+                                        else:
+                                            print (f"\n\t --VALOR DIGITADO ABAIXO DO VALOR DA COMPRA-- ")
+                                            
+                                    else:
+                                        print (f"\n\t --VALOR DIGITADO ABAIXO DO VALOR DA COMPRA-- ")
+                                            
 
+
+    # SISTEMA DE TROCO DO CAIXA
+
+                            nota200 = 0
+                            res200 = 2
+
+                            nota100 = 0
+                            res100 = 4
+
+                            nota50 = 0
+                            res50 = 6
+
+                            nota10 = 0
+                            res10 = 10
+
+                            nota5 = 0
+                            res5 = 10
+
+                            nota1 = 0
+                            res1 = 20
+
+                            nota0_5 = 0
+                            res0_5 = 20
+
+                            while troco > 0:
+                    
+                                if troco >=200 and nota200 < 2:
+
+                                    troco -= 200
+                                    nota200 += 1
+                                    res200 -= 1 
+                                                
+                                elif troco >= 100 and nota100 < 4:
+
+                                    troco -= 100
+                                    nota100 += 1
+                                    res100 -= 1 
+
+                                elif troco >= 50 and nota50 < 6:
+
+                                    troco -= 50
+                                    nota50 += 1
+                                    res50 -= 1 
+
+                                elif troco >= 10 and nota10 < 10:
+
+                                    troco -= 10
+                                    nota10 += 1
+                                    res10 -= 1 
+
+                                elif troco >= 5 and nota5 < 10:
+
+                                    troco -= 5
+                                    nota5 += 1
+                                    res5 -= 1 
+                                            
+
+                                elif troco >= 1 and nota1 < 20:
+
+                                    troco -= 1
+                                    nota1 += 1
+                                    res1 -= 1 
+
+                                elif troco >= 0.5 and nota0_5 < 20:
+
+                                    troco -= 0.5
+                                    nota0_5 += 1
+                                    res0_5 -= 1 
+
+
+                            print('\t||||||||||||||||||||||\n\t||       TROCO      ||\n\t||||||||||||||||||||||')                   
+
+                            if nota200 != 0:
+                                
+                                print(f"\t|| Notas de 200: {nota200}  ||")
+                                
+                            if nota100 != 0:
+                                
+                                print(f"\t|| Notas de 100: {nota100}  ||")
+                            
+                            if nota50 != 0:
+                                
+                                print(f"\t|| Notas de 50: {nota50}   ||")
+
+                            if nota10 != 0:
+                                
+                                print(f"\t|| Notas de 10: {nota10}   ||")
+                            
+                            if nota5 != 0:
+                                
+                                print(f"\t|| Notas de 5: {nota5}    ||")
+
+                            if nota1 != 0:
+                                
+                                print(f"\t|| Moedas de 1: {nota1}   ||")
+
+                            if nota0_5 != 0:
+                                
+                                print(f"\t|| Moedas de 0.5: {nota0_5}  ||")
+                                
+                            if troco == 0:
+                                print(f"\t||     SEM TROCO    ||")
+
+                            print('\t||||||||||||||||||||||')    
+
+    # FECHAMENTO DO CAIXA 
+                            controle = 0
+                            
+                            while controle == 0:
+                            
+                                opc = input(f"\n\tDESEJA FECHAR O CAIXA? (S= Sim e N= Não)")
+
+                                if opc == "S" or opc =="s":
+
+                                    controle = 1
+                                                
+                                    print(f"\n\t||||||||||||||||||||||||||||\n\t|| FECHAMENTO DO CAIXA!!! ||\n\t||||||||||||||||||||||||||||\n\n")
+                                    print("\tInformações: ")
+                                    print(f"\n\t|||||||||||||||||||||||||||||||||||||\n\t|| Número de cliente: {venda}            ||")
+                                    print(f"\t|| Valor total das Vendas: R${somaTotal} ||\n\t|||||||||||||||||||||||||||||||||||||")
+                                    print(f"\t|| Valor existente no caixa: {trocoTotal}||")
+
+                                    if res200 != 0:
+                                        
+                                        print(f"\t|| Notas de 200: {res200}                 ||")
+                                        
+                                    if res100 != 0:
+                                        
+                                        print(f"\t|| Notas de 100: {res100}                 ||")
                                     
-                    elif opc == "N" or opc == "n":
-                
-                        itn -=1
-                        val = 0
-                        ten_opc = 0
-         
-                
+                                    if res50 != 0:
+                                        
+                                        print(f"\t|| Notas de 50: {res50}                  ||")
+
+                                    if res10 != 0:
+                                        
+                                        print(f"\t|| Notas de 10: {res10}                 ||")
+                                    
+                                    if res5 != 0:
+                                        
+                                        print(f"\t|| Notas de 5: {res5}                  ||")
+
+                                    if res1 != 0:
+                                        
+                                        print(f"\t|| Moedas de 1: {res1}                 ||")
+
+                                    if res0_5 != 0:
+                                        
+                                        print(f"\t|| Moedas de 0.5: {res0_5}               ||")
+
+                                    print('\t|||||||||||||||||||||||||||||||||||||')    
+
+                                    print("\n\tAté breve........\n\n")
+
+                                    break
+
+                                elif opc == "N" or opc == "n":
+                                                
+                                    print(f'\n\tCONTINUANDO VENDAS...\n')
+
+                                    venda += 1
+
+                                    print(f"\n\t||||||||||||||||||||||||||||||||||||\n\t|| INSIRA OS VALORES DA {venda}° COMPRA ||\n\t||||||||||||||||||||||||||||||||||||")
+
+                                    controle = 1
+                                    
+                                else :
+                                    print("\n\t-- VALOR INVALIDO --")
+                                                
+
+                                            
+                        elif opc == "N" or opc == "n":
+                        
+                            itn -=1
+                            val = 0
+                            ten_opc = 0
+                            controle = 1
+                            
+                            
+                        else :
+                            print("\n\t-- VALOR INVALIDO --")
+                            
+
                 elif val_itn == -1:
                                 
                     itn -= 2
