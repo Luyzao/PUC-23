@@ -27,6 +27,7 @@ while ten > 0:
     if senha != verificar_senha:
         
         if ten == 1:
+            print("\t--REINICIE O PROGRAMA E TENTE NOVAMENTE--")
             break
 
         else:
