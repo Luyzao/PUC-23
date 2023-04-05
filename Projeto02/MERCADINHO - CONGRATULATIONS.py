@@ -4,9 +4,24 @@
 
 ##falta mensagem de valor insuficiente para pagamento
 
+
 ## quando digitado um valor acima do troco disponivel o sistema para e nao finaliza(digitar valor <= 200)
 
 ##mensagem para caso que nao exista troco
+
+## quando digitado um valor acima do troco disponivel o sistema para e nao finaliza
+##mensagem para numero de tentativas finalizadas -- "REINICIE O PROGRAMA E TENTE NOVAMENTE"
+##mensagem para caso que nao exista troco suficiente
+##formatação dos || conferir no fechamento do caixa
+##QUANDO VALOR PARA PAGAR FOR EXATO -- EXIBIR MENSAGEM "nao precisa de troco1234"
+
+#VALOR DE VENDA NAO EXISTENTE , NAO PRECISA DE TROCO
+
+##colocar a senha dentro
+
+
+###maior nota 200 se eu vou para as outras notas, enquanto o valor do troco for maior que d
+
 
 
 # ABRINDO CAIXA(PEDINDO NOVA SENHA PARA USUARIO E DEPOIS VERIFICANDO A SENHA DEFINIDA)
