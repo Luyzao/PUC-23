@@ -193,7 +193,8 @@ while ten > 0:
 
                         print('\t||||||||||||||||||||||')    
 
-        
+# FECHAMENTO DO CAIXA 
+
                         opc = input(f"\n\tDESEJA FECHAR O CAIXA? (S= Sim e N= Não)")
 
                         if opc == "S" or opc =="s":
@@ -261,9 +262,11 @@ while ten > 0:
                 
                 elif val_itn == -1:
                                 
-                    itn -= 1
+                    itn -= 2
                         
-                    print(f"Escreva o valor correto do iten {itn}: R$")
+                    print(f"\n\tEscreva o valor correto do iten {itn}: R$")
+
+                    tudo = total
 
 
 
