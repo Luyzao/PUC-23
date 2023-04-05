@@ -5,8 +5,16 @@
 ##falta mensagem de valor insuficiente para pagamento
 ## quando digitado um valor acima do troco disponivel o sistema para e nao finaliza
 ##mensagem para numero de tentativas finalizadas -- "REINICIE O PROGRAMA E TENTE NOVAMENTE"
-##mensagem para caso que nao exista troco
+##mensagem para caso que nao exista troco suficiente
 ##formatação dos || conferir no fechamento do caixa
+##QUANDO VALOR PARA PAGAR FOR EXATO -- EXIBIR MENSAGEM "nao precisa de troco1234"
+
+#VALOR DE VENDA NAO EXISTENTE , NAO PRECISA DE TROCO
+
+##colocar a senha dentro
+
+
+###maior nota 200 se eu vou para as outras notas, enquanto o valor do troco for maior que d
 
 
 # ABRINDO CAIXA(PEDINDO NOVA SENHA PARA USUARIO E DEPOIS VERIFICANDO A SENHA DEFINIDA)
@@ -14,7 +22,7 @@
 print(f"\n\t||||||||||||||||||||||||||\n\t|| B e m - V i n d o!!! ||\n\t||||||||||||||||||||||||||\n")
 
 # Variavel para deifinir a senha do caixa
-senha = int(input(f"\n\t Defina uma nova senha de 4 digitos: "))
+senha = 1234
 
 # Variavel para quantidade de tentativas
 ten =3 
