@@ -1,3 +1,14 @@
+#Perguntar para ela se o usuario mesmo pode definir a senha ou se colocamos um codigo secreto?
+#ao finalizar deve retornar o valor total de venda, o valor total de troco que sobrou ou os dois juntos
+##valores negativos estao entrando fora -1
+## o valor quando alterado não esta entrando. digita -1, ele pede o valor correto este valor entra no item seguinte e não no anterior
+##falta mensagem de valor insuficiente para pagamento
+## quando digitado um valor acima do troco disponivel o sistema para e nao finaliza
+##mensagem para numero de tentativas finalizadas -- "REINICIE O PROGRAMA E TENTE NOVAMENTE"
+##mensagem para caso que nao exista troco
+##formatação dos || conferir no fechamento do caixa
+
+
 # ABRINDO CAIXA(PEDINDO NOVA SENHA PARA USUARIO E DEPOIS VERIFICANDO A SENHA DEFINIDA)
 
 print(f"\n\t||||||||||||||||||||||||||\n\t|| B e m - V i n d o!!! ||\n\t||||||||||||||||||||||||||\n")
