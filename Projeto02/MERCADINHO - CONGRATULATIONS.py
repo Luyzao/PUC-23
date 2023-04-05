@@ -117,48 +117,48 @@ while ten > 0:
 
                         while troco > 0:
                 
-                                        if troco >=200 and nota200 < 2:
+                            if troco >=200 and nota200 < 2:
 
-                                            troco -= 200
-                                            nota200 += 1
-                                            res200 -= 1 
+                                troco -= 200
+                                nota200 += 1
+                                res200 -= 1 
                                             
-                                        elif troco >= 100 and nota100 < 4:
+                            elif troco >= 100 and nota100 < 4:
 
-                                            troco -= 100
-                                            nota100 += 1
-                                            res100 -= 1 
+                                troco -= 100
+                                nota100 += 1
+                                res100 -= 1 
 
-                                        elif troco >= 50 and nota50 < 6:
+                            elif troco >= 50 and nota50 < 6:
 
-                                            troco -= 50
-                                            nota50 += 1
-                                            res50 -= 1 
+                                troco -= 50
+                                nota50 += 1
+                                res50 -= 1 
 
-                                        elif troco >= 10 and nota10 < 10:
+                            elif troco >= 10 and nota10 < 10:
 
-                                            troco -= 10
-                                            nota10 += 1
-                                            res10 -= 1 
+                                troco -= 10
+                                nota10 += 1
+                                res10 -= 1 
 
-                                        elif troco >= 5 and nota5 < 10:
+                            elif troco >= 5 and nota5 < 10:
 
-                                            troco -= 5
-                                            nota5 += 1
-                                            res5 -= 1 
+                                troco -= 5
+                                nota5 += 1
+                                res5 -= 1 
                                         
 
-                                        elif troco >= 1 and nota1 < 20:
+                            elif troco >= 1 and nota1 < 20:
 
-                                            troco -= 1
-                                            nota1 += 1
-                                            res1 -= 1 
+                                troco -= 1
+                                nota1 += 1
+                                res1 -= 1 
 
-                                        elif troco >= 0.5 and nota0_5 < 20:
+                            elif troco >= 0.5 and nota0_5 < 20:
 
-                                            troco -= 0.5
-                                            nota0_5 += 1
-                                            res0_5 -= 1 
+                                troco -= 0.5
+                                nota0_5 += 1
+                                res0_5 -= 1 
 
 
                         print('\t||||||||||||||||||||||\n\t||       TROCO      ||\n\t||||||||||||||||||||||')                   
