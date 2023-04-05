@@ -19,5 +19,3 @@ valor_pago = 600
 troco = soma_valor - valor_pago
 qtd_notas = 0
 
-while valor_pago!=0:
-    if troco < notas200:
