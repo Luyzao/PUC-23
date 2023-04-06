@@ -4,8 +4,6 @@
 
 ## mensagem para caso que nao exista troco suficiente
 
-## CORRIGIR VALIDES DOS INPUTS
-
 # ------------------------------------------------------------------------------------------------------------
 
 # ABRINDO CAIXA(PEDINDO NOVA SENHA PARA USUARIO E DEPOIS VERIFICANDO A SENHA DEFINIDA)
@@ -394,7 +392,6 @@ while ten > 0:
                     
                     print("\n\t-- VALOR INVALIDO --\n")
                     
-<<<<<<< HEAD
                     itn -= 1
 
                 
@@ -407,6 +404,3 @@ while ten > 0:
 
 
 
-=======
-                    itn -= 1
->>>>>>> 4efde61599ec4b5dd5b3a2e044dc15cb96b61909
