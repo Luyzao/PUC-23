@@ -1,9 +1,5 @@
 # ------------------------------------------------------------------------------------------------------------
 
-## quando digitado um valor acima do troco disponivel o sistema para e nao finaliza(digitar valor <= 200)
-
-## mensagem para caso que nao exista troco suficiente
-
 # ------------------------------------------------------------------------------------------------------------
 
 # ABRINDO CAIXA(PEDINDO NOVA SENHA PARA USUARIO E DEPOIS VERIFICANDO A SENHA DEFINIDA)
@@ -40,7 +36,6 @@ while ten > 0:
         print(f' \tTroco disponivel no caixa: 1280,00')
 
         trocoTotal = 1280
-        trocoCaixa = trocoTotal
         venda =  1
         val = 0
         itn = 0
@@ -106,13 +101,31 @@ while ten > 0:
                                         
                                         if pagar >= tudo:
                                         
-                                            valorTotal = 1280
-                                            res = valorTotal - troco
-                                            tudo = 0
-                                            trocoTotal -= troco
-                                            controle1 = 1
-                                        
-                                            print(f"\n\tValor do troco: R${troco}\n")
+                                            if troco <= 300:
+
+                                                valorTotal = 1280
+                                                tudo = 0
+
+                                                if trocoTotal > troco:
+                                                    
+                                                   
+                                                    trocoTotal -= troco
+                                                    controle1 = 1
+                                                    print(f"\n\tValor do troco: R${troco}\n")
+                                                    controle2 = 0
+                                                
+                                                else:
+                                                    print("\n\n\n\t-- O TROCO DO CAIXA ACABOU CHAME O GERENTE --\n\n\tEncerrando sistema.....\n\n")
+                                                    controle1 = 1
+                                                    controle = 1
+                                                    controle2 = 1
+                                                    val = 1
+                                                    
+                                            
+                                                
+                                            
+                                            else:
+                                                print (f"\n\t --VALOR DO TROCO ACIMA DO PERMITIDO-- \n")
                                             
                                         else:
                                             print (f"\n\t --VALOR DIGITADO INSUFICIENTE PARA PAGAMENTO-- \n")
@@ -125,23 +138,11 @@ while ten > 0:
     # SISTEMA DE TROCO DO CAIXA
 
                             nota200 = 0
-                            
-
                             nota100 = 0
-                            
-
                             nota50 = 0
-                            
-
                             nota10 = 0
-                            
-
                             nota5 = 0
-                            
-
                             nota1 = 0
-                          
-
                             nota0_5 = 0
                            
 
@@ -188,46 +189,48 @@ while ten > 0:
 
                                     troco -= 0.5
                                     nota0_5 += 1
-                                
 
+                                
+                            if controle2 == 0:
 
-                            print('\t||||||||||||||||||||||\n\t||       TROCO      ||\n\t||||||||||||||||||||||')                   
+                                print('\t||||||||||||||||||||||\n\t||       TROCO      ||\n\t||||||||||||||||||||||')                   
 
-                            if nota200 != 0:
-                                
-                                print(f"\t|| Notas de 200: {nota200}  ||")
-                                
-                            if nota100 != 0:
-                                
-                                print(f"\t|| Notas de 100: {nota100}  ||")
+                                if nota200 != 0:
+                                        
+                                    print(f"\t|| Notas de 200: {nota200}  ||")
+                                        
+                                if nota100 != 0:
+                                        
+                                    print(f"\t|| Notas de 100: {nota100}  ||")
+                                    
+                                if nota50 != 0:
+                                        
+                                    print(f"\t|| Notas de 50: {nota50}   ||")
+
+                                if nota10 != 0:
+                                        
+                                    print(f"\t|| Notas de 10: {nota10}   ||")
+                                    
+                                if nota5 != 0:
+                                        
+                                    print(f"\t|| Notas de 5: {nota5}    ||")
+
+                                if nota1 != 0:
+                                        
+                                    print(f"\t|| Moedas de 1: {nota1}   ||")
+
+                                if nota0_5 != 0:
+                                        
+                                    print(f"\t|| Moedas de 0.5: {nota0_5}  ||")
+                                        
+                                if troco == pagar:
+                                    print(f"\t||     SEM TROCO    ||")
+
+                                print('\t||||||||||||||||||||||')    
                             
-                            if nota50 != 0:
-                                
-                                print(f"\t|| Notas de 50: {nota50}   ||")
-
-                            if nota10 != 0:
-                                
-                                print(f"\t|| Notas de 10: {nota10}   ||")
                             
-                            if nota5 != 0:
-                                
-                                print(f"\t|| Notas de 5: {nota5}    ||")
-
-                            if nota1 != 0:
-                                
-                                print(f"\t|| Moedas de 1: {nota1}   ||")
-
-                            if nota0_5 != 0:
-                                
-                                print(f"\t|| Moedas de 0.5: {nota0_5}  ||")
-                                
-                            if troco == 0:
-                                print(f"\t||     SEM TROCO    ||")
-
-                            print('\t||||||||||||||||||||||')    
 
     # FECHAMENTO DO CAIXA 
-                            controle2 = 0
                             
                             while controle2 == 0:
                             
@@ -264,7 +267,7 @@ while ten > 0:
                                     nota0_5 = 0
                                     res0_5 = 20
 
-                                    trocoTotal = trocoCaixa - trocoTotal
+                                    trocoTotal = valorTotal - trocoTotal
 
 
                                     while trocoTotal > 0:
