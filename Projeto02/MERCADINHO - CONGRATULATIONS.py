@@ -2,9 +2,7 @@
 
 ##mensagem para caso que nao exista troco suficiente
 
-##QUANDO VALOR PARA PAGAR FOR EXATO -- EXIBIR MENSAGEM "nao precisa de troco1234"
-
-
+# CORRIGIR VALIDES DOS INPUTS
 
 # ABRINDO CAIXA(PEDINDO NOVA SENHA PARA USUARIO E DEPOIS VERIFICANDO A SENHA DEFINIDA)
 
@@ -267,7 +265,7 @@ while ten > 0:
 
 
                                     while trocoTotal > 0:
-                            
+                    
                                         if trocoTotal >=200 and nota200 < 2:
 
                                             trocoTotal -= 200
@@ -275,13 +273,13 @@ while ten > 0:
                                             
                                         
                                                         
-                                        elif trocoTotal >= 100 and nota100 <= 4:
+                                        elif trocoTotal >= 100 and nota100 < 4:
 
                                             trocoTotal -= 100
                                             nota100+=1
                                         
 
-                                        elif trocoTotal >= 50 and nota50 <= 6:
+                                        elif trocoTotal >= 50 and nota50 < 6:
 
                                             trocoTotal -= 50
                                             nota50+=1
@@ -392,11 +390,3 @@ while ten > 0:
                     print("\n\t-- VALOR INVALIDO --\n")
                     
                     itn -= 1
-                    
-                   
-
-
-
-
-
-
