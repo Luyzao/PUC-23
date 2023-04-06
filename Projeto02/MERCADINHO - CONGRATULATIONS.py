@@ -124,25 +124,25 @@ while ten > 0:
     # SISTEMA DE TROCO DO CAIXA
 
                             nota200 = 0
-                            res200 = 2
+                            
 
                             nota100 = 0
-                            res100 = 4
+                            
 
                             nota50 = 0
-                            res50 = 6
+                            
 
                             nota10 = 0
-                            res10 = 10
+                            
 
                             nota5 = 0
-                            res5 = 10
+                            
 
                             nota1 = 0
-                            res1 = 20
+                          
 
                             nota0_5 = 0
-                            res0_5 = 20
+                           
 
                             while troco > 0:
                     
@@ -150,19 +150,19 @@ while ten > 0:
 
                                     troco -= 200
                                     nota200 += 1
-                                    
+                                
                                                 
                                 elif troco >= 100 and nota100 < 4:
 
                                     troco -= 100
                                     nota100 += 1
-                                    
+                                  
 
                                 elif troco >= 50 and nota50 < 6:
 
                                     troco -= 50
                                     nota50 += 1
-                                    
+                                   
 
                                 elif troco >= 10 and nota10 < 10:
 
@@ -187,7 +187,7 @@ while ten > 0:
 
                                     troco -= 0.5
                                     nota0_5 += 1
-                                    
+                                
 
 
                             print('\t||||||||||||||||||||||\n\t||       TROCO      ||\n\t||||||||||||||||||||||')                   
@@ -268,38 +268,45 @@ while ten > 0:
                                         if trocoTotal >=200 and nota200 < 2:
 
                                             trocoTotal -= 200
-                                            res200 -= 1 
+                                            nota200 += 1
+                                            res200 = res200 - nota200
                                                         
                                         elif trocoTotal >= 100 and nota100 < 4:
 
                                             trocoTotal -= 100
-                                            res100 -= 1 
+                                            nota100 += 1
+                                            res100 = res100 - nota100 
 
                                         elif trocoTotal >= 50 and nota50 < 6:
 
                                             trocoTotal -= 50
-                                            res50 -= 1 
+                                            nota50 += 1
+                                            res50 = res50 - nota50 
 
                                         elif trocoTotal >= 10 and nota10 < 10:
 
                                             trocoTotal -= 10
-                                            res10 -= 1 
+                                            nota10 += 1
+                                            res10 = res10 - nota10 
 
                                         elif trocoTotal >= 5 and nota5 < 10:
 
                                             trocoTotal -= 5
-                                            res5 -= 1 
+                                            nota5 += 1
+                                            res5 = res5 - nota5 
                                                     
 
                                         elif trocoTotal >= 1 and nota1 < 20:
 
                                             trocoTotal -= 1
-                                            res1 -= 1 
+                                            nota1 += 1
+                                            res1 = res1 - nota1 
 
                                         elif trocoTotal >= 0.5 and nota0_5 < 20:
 
                                             trocoTotal -= 0.5
-                                            res0_5 -= 1 
+                                            nota0_5 += 1
+                                            res0_5 = res0_5 - nota0_5 
 
                                     if res200 != 0:
                                         
