@@ -263,6 +263,8 @@ while ten > 0:
                                     nota0_5 = 0
                                     res0_5 = 20
 
+                                    trocoTotal = 1280 - trocoTotal
+
 
                                     while trocoTotal > 0:
                     
