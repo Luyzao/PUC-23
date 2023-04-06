@@ -362,7 +362,7 @@ while ten > 0:
 
                                     print(f"\n\t||||||||||||||||||||||||||||||||||||\n\t|| INSIRA OS VALORES DA {venda}° COMPRA ||\n\t||||||||||||||||||||||||||||||||||||")
 
-                                    controle = 2
+                                    controle2 = 1
                                     
                                 else :
                                     print("\n\t-- VALOR INVALIDO --\n")
