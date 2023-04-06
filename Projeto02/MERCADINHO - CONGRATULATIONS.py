@@ -1,8 +1,12 @@
+# ------------------------------------------------------------------------------------------------------------
+
 ## quando digitado um valor acima do troco disponivel o sistema para e nao finaliza(digitar valor <= 200)
 
-##mensagem para caso que nao exista troco suficiente
+## mensagem para caso que nao exista troco suficiente
 
-# CORRIGIR VALIDES DOS INPUTS
+## CORRIGIR VALIDES DOS INPUTS
+
+# ------------------------------------------------------------------------------------------------------------
 
 # ABRINDO CAIXA(PEDINDO NOVA SENHA PARA USUARIO E DEPOIS VERIFICANDO A SENHA DEFINIDA)
 
@@ -38,6 +42,7 @@ while ten > 0:
         print(f' \tTroco disponivel no caixa: 1280,00')
 
         trocoTotal = 1280
+        trocoCaixa = trocoTotal
         venda =  1
         val = 0
         itn = 0
@@ -261,7 +266,7 @@ while ten > 0:
                                     nota0_5 = 0
                                     res0_5 = 20
 
-                                    trocoTotal = 1280 - trocoTotal
+                                    trocoTotal = trocoCaixa - trocoTotal
 
 
                                     while trocoTotal > 0:
