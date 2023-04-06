@@ -1,12 +1,4 @@
-
-
-##falta mensagem de valor insuficiente para pagamento
-
-
 ## quando digitado um valor acima do troco disponivel o sistema para e nao finaliza(digitar valor <= 200)
-
-
-## quando digitado um valor acima do troco disponivel o sistema para e nao finaliza
 
 ##mensagem para caso que nao exista troco suficiente
 
@@ -122,10 +114,10 @@ while ten > 0:
                                             print(f"\n\tValor do troco: R${troco}\n")
                                             
                                         else:
-                                            print (f"\n\t --VALOR DIGITADO ABAIXO DO VALOR DA COMPRA-- ")
+                                            print (f"\n\t --VALOR DIGITADO INSUFICIENTE PARA PAGAMENTO-- \n")
                                             
                                     else:
-                                        print (f"\n\t --VALOR DIGITADO ABAIXO DO VALOR DA COMPRA-- ")
+                                        print (f"\n\t --VALOR DIGITADO INSUFICIENTE PARA PAGAMENTO-- \n")
                                             
 
 
@@ -158,44 +150,44 @@ while ten > 0:
 
                                     troco -= 200
                                     nota200 += 1
-                                    res200 -= 1 
+                                    
                                                 
                                 elif troco >= 100 and nota100 < 4:
 
                                     troco -= 100
                                     nota100 += 1
-                                    res100 -= 1 
+                                    
 
                                 elif troco >= 50 and nota50 < 6:
 
                                     troco -= 50
                                     nota50 += 1
-                                    res50 -= 1 
+                                    
 
                                 elif troco >= 10 and nota10 < 10:
 
                                     troco -= 10
                                     nota10 += 1
-                                    res10 -= 1 
+                                    
 
                                 elif troco >= 5 and nota5 < 10:
 
                                     troco -= 5
                                     nota5 += 1
-                                    res5 -= 1 
+                                    
                                             
 
                                 elif troco >= 1 and nota1 < 20:
 
                                     troco -= 1
                                     nota1 += 1
-                                    res1 -= 1 
+                                    
 
                                 elif troco >= 0.5 and nota0_5 < 20:
 
                                     troco -= 0.5
                                     nota0_5 += 1
-                                    res0_5 -= 1 
+                                    
 
 
                             print('\t||||||||||||||||||||||\n\t||       TROCO      ||\n\t||||||||||||||||||||||')                   
@@ -249,6 +241,65 @@ while ten > 0:
                                     print(f"\n\t|||||||||||||||||||||||||||||||||||||\n\t|| Número de cliente: {venda}            ||")
                                     print(f"\t|| Valor total das Vendas: R${somaTotal} ||\n\t|||||||||||||||||||||||||||||||||||||")
                                     print(f"\t|| Valor existente no caixa: {trocoTotal}||")
+
+                                    nota200 = 0
+                                    res200 = 2
+
+                                    nota100 = 0
+                                    res100 = 4
+
+                                    nota50 = 0
+                                    res50 = 6
+
+                                    nota10 = 0
+                                    res10 = 10
+
+                                    nota5 = 0
+                                    res5 = 10
+
+                                    nota1 = 0
+                                    res1 = 20
+
+                                    nota0_5 = 0
+                                    res0_5 = 20
+
+                                    while trocoTotal > 0:
+                            
+                                        if trocoTotal >=200 and nota200 < 2:
+
+                                            trocoTotal -= 200
+                                            res200 -= 1 
+                                                        
+                                        elif trocoTotal >= 100 and nota100 < 4:
+
+                                            trocoTotal -= 100
+                                            res100 -= 1 
+
+                                        elif trocoTotal >= 50 and nota50 < 6:
+
+                                            trocoTotal -= 50
+                                            res50 -= 1 
+
+                                        elif trocoTotal >= 10 and nota10 < 10:
+
+                                            trocoTotal -= 10
+                                            res10 -= 1 
+
+                                        elif trocoTotal >= 5 and nota5 < 10:
+
+                                            trocoTotal -= 5
+                                            res5 -= 1 
+                                                    
+
+                                        elif trocoTotal >= 1 and nota1 < 20:
+
+                                            trocoTotal -= 1
+                                            res1 -= 1 
+
+                                        elif trocoTotal >= 0.5 and nota0_5 < 20:
+
+                                            trocoTotal -= 0.5
+                                            res0_5 -= 1 
 
                                     if res200 != 0:
                                         
