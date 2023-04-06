@@ -394,6 +394,7 @@ while ten > 0:
                     
                     print("\n\t-- VALOR INVALIDO --\n")
                     
+<<<<<<< HEAD
                     itn -= 1
 
                 
@@ -406,3 +407,6 @@ while ten > 0:
 
 
 
+=======
+                    itn -= 1
+>>>>>>> 4efde61599ec4b5dd5b3a2e044dc15cb96b61909
