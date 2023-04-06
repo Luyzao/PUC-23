@@ -11,7 +11,7 @@
 ##mensagem para caso que nao exista troco suficiente
 
 ##QUANDO VALOR PARA PAGAR FOR EXATO -- EXIBIR MENSAGEM "nao precisa de troco1234"
-print(12)
+
 
 
 # ABRINDO CAIXA(PEDINDO NOVA SENHA PARA USUARIO E DEPOIS VERIFICANDO A SENHA DEFINIDA)
