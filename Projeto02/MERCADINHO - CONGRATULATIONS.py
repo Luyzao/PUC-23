@@ -395,6 +395,9 @@ while ten > 0:
                     print("\n\t-- VALOR INVALIDO --\n")
                     
                     itn -= 1
+
+                
+
                     
                    
 
