@@ -265,19 +265,19 @@ while ten > 0:
 
                                     while trocoTotal > 0:
                             
-                                        if trocoTotal >=200 and nota200 < 2:
+                                        if trocoTotal >=200 and nota200 <= 2:
 
                                             trocoTotal -= 200
                                             nota200 += 1
                                             res200 = res200 - nota200
                                                         
-                                        elif trocoTotal >= 100 and nota100 < 4:
+                                        elif trocoTotal >= 100 and nota100 <= 4:
 
                                             trocoTotal -= 100
                                             nota100 += 1
                                             res100 = res100 - nota100 
 
-                                        elif trocoTotal >= 50 and nota50 < 6:
+                                        elif trocoTotal >= 50 and nota50 <= 6:
 
                                             trocoTotal -= 50
                                             nota50 += 1
