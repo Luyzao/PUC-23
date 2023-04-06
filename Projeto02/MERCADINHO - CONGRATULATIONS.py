@@ -93,9 +93,9 @@ while ten > 0:
                             itn = 0
                             ten_opc = 0
                             
-                            controle = 0
+                            controle1 = 0
 
-                            while controle == 0:
+                            while controle1 == 0:
 
                                     pagar = float(input(f"\tInsira a quantia para fazer o pagamento: R$"))
 
@@ -109,7 +109,7 @@ while ten > 0:
                                             res = valorTotal - troco
                                             tudo = 0
                                             trocoTotal -= troco
-                                            controle = 1
+                                            controle1 = 1
                                         
                                             print(f"\n\tValor do troco: R${troco}\n")
                                             
@@ -226,15 +226,15 @@ while ten > 0:
                             print('\t||||||||||||||||||||||')    
 
     # FECHAMENTO DO CAIXA 
-                            controle = 0
+                            controle2 = 0
                             
-                            while controle == 0:
+                            while controle2 == 0:
                             
                                 opc = input(f"\n\tDESEJA FECHAR O CAIXA? (S= Sim e N= Não)")
 
                                 if opc == "S" or opc =="s":
 
-                                    controle = 1
+                                    controle2 = 1
                                                 
                                     print(f"\n\t||||||||||||||||||||||||||||\n\t|| FECHAMENTO DO CAIXA!!! ||\n\t||||||||||||||||||||||||||||\n\n")
                                     print("\tInformações: ")
@@ -263,50 +263,60 @@ while ten > 0:
                                     nota0_5 = 0
                                     res0_5 = 20
 
+
                                     while trocoTotal > 0:
-                            
+                    
                                         if trocoTotal >=200 and nota200 < 2:
 
                                             trocoTotal -= 200
-                                            nota200 += 1
-                                            res200 = res200 - nota200
+                                            nota200+=1
+                                            
+                                        
                                                         
                                         elif trocoTotal >= 100 and nota100 < 4:
 
                                             trocoTotal -= 100
-                                            nota100 += 1
-                                            res100 = res100 - nota100 
+                                            nota100+=1
+                                        
 
                                         elif trocoTotal >= 50 and nota50 < 6:
 
                                             trocoTotal -= 50
-                                            nota50 += 1
-                                            res50 = res50 - nota50 
+                                            nota50+=1
+                                        
 
                                         elif trocoTotal >= 10 and nota10 < 10:
 
                                             trocoTotal -= 10
-                                            nota10 += 1
-                                            res10 = res10 - nota10 
+                                            nota10+=1
+                                            
 
                                         elif trocoTotal >= 5 and nota5 < 10:
 
                                             trocoTotal -= 5
-                                            nota5 += 1
-                                            res5 = res5 - nota5 
+                                            nota5+=1
+                                            
                                                     
 
                                         elif trocoTotal >= 1 and nota1 < 20:
 
                                             trocoTotal -= 1
-                                            nota1 += 1
-                                            res1 = res1 - nota1 
+                                            nota1+=1
+                                            
 
                                         elif trocoTotal >= 0.5 and nota0_5 < 20:
 
                                             trocoTotal -= 0.5
-                                            nota0_5 += 1
-                                            res0_5 = res0_5 - nota0_5 
+                                            nota0_5+=1
+
+                                    res200 -= nota200
+                                    res100 -= nota100
+                                    res50 -= nota50
+                                    res10 -= nota10
+                                    res5 -= nota5
+                                    res1 -= nota1
+                                    res0_5 -= nota0_5
+                                    
 
                                     if res200 != 0:
                                         
@@ -324,7 +334,7 @@ while ten > 0:
                                         
                                         print(f"\t|| Notas de 10: {res10}                 ||")
                                     
-                                    if res5 != 0:
+                                    if res5 !=0:
                                         
                                         print(f"\t|| Notas de 5: {res5}                  ||")
 
@@ -340,7 +350,7 @@ while ten > 0:
 
                                     print("\n\tAté breve........\n\n")
 
-                                    break
+                                    val = 1
 
                                 elif opc == "N" or opc == "n":
                                                 
@@ -350,7 +360,7 @@ while ten > 0:
 
                                     print(f"\n\t||||||||||||||||||||||||||||||||||||\n\t|| INSIRA OS VALORES DA {venda}° COMPRA ||\n\t||||||||||||||||||||||||||||||||||||")
 
-                                    controle = 1
+                                    controle = 2
                                     
                                 else :
                                     print("\n\t-- VALOR INVALIDO --\n")
