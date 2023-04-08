@@ -1,5 +1,7 @@
 # ------------------------------------------------------------------------------------------------------------
-
+#ANA CAROLINA MORELLI CHAVES 23017617
+#CICERA EDUARDA DA COSTA 23016727
+#LUIZ GUSTAVO PINTO DA SILVA 23013028
 # ------------------------------------------------------------------------------------------------------------
 
 # ABRINDO CAIXA(PEDINDO NOVA SENHA PARA USUARIO E DEPOIS VERIFICANDO A SENHA DEFINIDA)
@@ -15,7 +17,12 @@ ten =3
 # Sistema para verificar a senha com limite de tentativas
 while ten > 0:
 
+
     verificar_senha = input(f"\n\t Dígite a senha do caixa: ")
+
+    
+    verificar_senha = int(input(f"\t Dígite a senha do caixa: "))
+
 
     if type(verificar_senha) == int:
 
@@ -63,7 +70,7 @@ while ten > 0:
                 
 
                 itn += 1
-                val_itn = float(input(f"\n\tDigite o valor do item {itn}: R$"))
+                val_itn = float(input(f"\n\tDigite o valor do item{itn}: R$"))
 
                 if val_itn > 0:
 
