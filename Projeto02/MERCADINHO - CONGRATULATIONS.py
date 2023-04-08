@@ -7,7 +7,7 @@
 print(f"\n\t||||||||||||||||||||||||||\n\t|| B e m - V i n d o!!! ||\n\t||||||||||||||||||||||||||\n")
 
 # Variavel para deifinir a senha do caixa
-senha = 1234
+senha = '1234'
 
 # Variavel para quantidade de tentativas
 ten =3 
@@ -15,22 +15,27 @@ ten =3
 # Sistema para verificar a senha com limite de tentativas
 while ten > 0:
 
-    verificar_senha = int(input(f"\n\t Dígite a senha do caixa: "))
+    verificar_senha = input(f"\n\t Dígite a senha do caixa: ")
 
-    if senha != verificar_senha:
-        
-        if ten == 1:
-            print("\t--REINICIE O PROGRAMA E TENTE NOVAMENTE--")
-            break
+    if type(verificar_senha) == int:
 
+        if senha != verificar_senha:
+            
+            if ten == 1:
+                print("\t--REINICIE O PROGRAMA E TENTE NOVAMENTE--")
+                break
+
+            else:
+                ten -= 1
+                print(f"\n\t VC TEM DIREITO A MAIS {ten} TENTATIVAS")
         else:
-            ten -= 1
-            print(f"\n\t VC TEM DIREITO A MAIS {ten} TENTATIVAS")
-    else:
+    
+    
+        
 
 # SISTEMA DO CAIXA
 
-        ten=0
+            ten=0
 
         print(f"\n\t||||||||||||||||||||||||||||||||\n\t|| C a i x a - A b e r t o!!! ||\n\t||||||||||||||||||||||||||||||||\n")
         print(f' \tTroco disponivel no caixa: 1280,00')
@@ -396,6 +401,9 @@ while ten > 0:
                     print("\n\t-- VALOR INVALIDO --\n")
                     
                     itn -= 1
+
+    else:
+        print("\n\t-- VALOR INVALIDO --\n")
 
                 
 
