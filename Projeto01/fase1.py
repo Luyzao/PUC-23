@@ -1,6 +1,6 @@
 
-
-while True:
+controle = 0
+while controle == 0:
 
     print("INSIRA AS AMOSTRAS")
     mp10 = int(input("MP10: "))
@@ -27,13 +27,19 @@ while True:
                 ("Qualidade do ar está RUIM\nEfeitos: Toda a população pode apresentar sintomas como \ntosse seca, cansaço, ardor nos olhos, nariz e \ngarganta. Pessoas de grupos sensíveis (crianças, idosos e pessoas com doenças respiratórias e \ncardíacas) podem apresentar efeitos mais sérios na saúde.")
         elif 50 < mp10 <= 100 or 25 < mp2_5 <= 50 or 100 < o3 <= 130 or 9 < co <= 11 or 200 < no2 <= 240 or 20 < so2 <= 40:
             print \
-                ("Qualidade do ar está MODERADA\nEfeitos: Pessoas de grupos sensiveis (crianças, idosos e \npessoas com doenças respiratórias e cardiacas) \npodem apresentar sintomas com tosse seca e \ncansaço. A população, em geral, não é afetada.")
+                ("Qualidade do ar está REGULAR\nEfeitos: Pessoas de grupos sensiveis (crianças, idosos e \npessoas com doenças respiratórias e cardiacas) \npodem apresentar sintomas com tosse seca e \ncansaço. A população, em geral, não é afetada.")
         elif mp10 <= 50 or mp2_5 <= 25 or o3 <= 100 or co <= 9 or no2 <= 200 or so2 <= 20:
             print \
                 ("Qualidade do ar está BOA\nEfeitos: Nenhum")
-        OPC = int(input("VOCÊ QUER INSERIR OUTRA A MOSTRA?\n1.SIM\n2.NÃO QUERO SAIR DO PROGRAMA\n"))
+                
+        controle1 = 0
+                
+        while controle1 == 0   :
+            OPC =int(input("\nVOCÊ QUER INSERIR OUTRA AMOSTRA?\nDIGITE 1 PARA CONTINUAR\nDIGITE 2 PARA PARAR\n"))
 
-        if OPC == 1:
-            continue
-        elif OPC == 2:
-            break
+            if OPC == 1:
+                
+                controle1 = 1
+            elif OPC == 2:
+                controle =1
+                controle1 = 1
