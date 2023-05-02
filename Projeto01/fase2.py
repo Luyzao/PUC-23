@@ -1,11 +1,12 @@
-import cx_Oracle
-cx_Oracle.init_oracle_client(lib_dir=r"C:\oraclexe\app\oracle\instantclient_21_9")
-import sys
+import getpass
+import oracledb
 try:
-        
-    conexao=cx_Oracle.connect(user='ADM',password='bolinho',dsn='localhost/xe')
+    conexao = oracledb.connect(
+        user = "Valentina",
+        password = "valeenzo",
+        dsn="localhost/XEPDB1"
+)
        
-
 except Exception as err:
         print('ERRO',err)
         
@@ -77,92 +78,4 @@ else:
                 controle = 1   
             
             else:
-                print("DADO INVALIDO\n") 
-                    
-            
-            # if opc == "2":
-         
-            #     cursor = conexao.cursor()
-            
-            #     soma = (f"SELECT SUM(mp10) FROM indice")
-            #     conta = ("SELECT COUNT(*) FROM indice")
-            #     for i in cursor.execute(soma):
-            #         res = int(''.join(map(str, i)))
-            #         print (res)
-            #     for i in cursor.execute(conta):
-            #         quant = int(''.join(map(str, i)))
-            #         print(quant) 
-                    
-            #     media = res/quant
-            #     print(media)
-                
-            # if opc == "3":
-         
-            #     cursor = conexao.cursor()
-            
-            #     soma = (f"SELECT SUM(mp10) FROM indice")
-            #     conta = ("SELECT COUNT(*) FROM indice")
-            #     for i in cursor.execute(soma):
-            #         res = int(''.join(map(str, i)))
-            #         print (res)
-            #     for i in cursor.execute(conta):
-            #         quant = int(''.join(map(str, i)))
-            #         print(quant) 
-                    
-            #     media = res/quant
-            #     print(media)
-                
-            # if opc == "4":
-         
-            #     cursor = conexao.cursor()
-            
-            #     soma = (f"SELECT SUM(mp10) FROM indice")
-            #     conta = ("SELECT COUNT(*) FROM indice")
-            #     for i in cursor.execute(soma):
-            #         res = int(''.join(map(str, i)))
-            #         print (res)
-            #     for i in cursor.execute(conta):
-            #         quant = int(''.join(map(str, i)))
-            #         print(quant) 
-                    
-            #     media = res/quant
-            #     print(media)
-                
-            # if opc == "5":
-         
-            #     cursor = conexao.cursor()
-            
-            #     soma = (f"SELECT SUM(mp10) FROM indice")
-            #     conta = ("SELECT COUNT(*) FROM indice")
-            #     for i in cursor.execute(soma):
-            #         res = int(''.join(map(str, i)))
-            #         print (res)
-            #     for i in cursor.execute(conta):
-            #         quant = int(''.join(map(str, i)))
-            #         print(quant) 
-                    
-            #     media = res/quant
-            #     print(media)
-                
-            # if opc == "6":
-         
-            #     cursor = conexao.cursor()
-            
-            #     soma = (f"SELECT SUM(mp10) FROM indice")
-            #     conta = ("SELECT COUNT(*) FROM indice")
-            #     for i in cursor.execute(soma):
-            #         res = int(''.join(map(str, i)))
-            #         print (res)
-            #     for i in cursor.execute(conta):
-            #         quant = int(''.join(map(str, i)))
-            #         print(quant) 
-                    
-            #     media = res/quant
-            #     print(media)
-                
-            # if opc == "7":
-         
-            #     break
-                    
-                
-         
+                print("DADO INVALIDO\n")
