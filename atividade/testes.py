@@ -14,7 +14,7 @@ while quant > 0:
     if cod in biblioteca.keys():
 
         print("este livro já exite")
-        cod = int(input("Código do livro: "))
+        
 
     else:
 
@@ -39,6 +39,7 @@ while quant > 0:
         preco = float(input("Digite o valor do livro: "))
 
         biblioteca[cod] = [title,quntA,autores,preco]
+        print("\nLIVRO CADASTRADO COM SUCESSO!!!\n")
 
         opc = input("Quer cadastrar mais livros? (S ou s/N ou n)")
 
@@ -57,7 +58,8 @@ while quant > 0:
 
     print("\n\t---BUSCANDO LIVRO---\n")
 
-    opc = input("Procura livro por código(c)\nProcura livro por titulo(t)\nVer o livros com valor de R$50,00 para cima(p)\nDigite a opção: ")
+    opc = input("Procura livro por código(c)\nProcura livro por titulo(t)\nVer o livros com valor de R$50,00 para cima(p)\nSair.(s)\n\n\nDigite a opção: ")
+
 
     if opc == "c" or opc == "C":
 
@@ -93,8 +95,11 @@ while quant > 0:
                 print('-=' * 35)
                 print(f"| {'Codigo':^10} | {'Titulo':^30} | {'Preço':^20} |")
                 print('-' * 70)
-                print(f'| {codP:^10} | {title:^30} | {preco:^20.2f} |')
+                print(f'| {codP:^10} | {livro[0]:^30} | {livro[3]:^20.2f}|')
                 print('-=' * 35)
+
+    elif opc == "s" or opc == "S":
+        quant = 0
 
     else:
         print("Está opção não exite!")
