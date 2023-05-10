@@ -11,9 +11,10 @@ while quant > 0:
     
     cod = int(input("Código do livro: "))
 
-    if cod in livros.keys():
+    if cod in biblioteca.keys():
 
         print("este livro já exite")
+        cod = int(input("Código do livro: "))
 
     else:
 
@@ -37,9 +38,7 @@ while quant > 0:
 
         preco = float(input("Digite o valor do livro: "))
 
-        livros = {'titulo':title,'quantidade_autores':quntA,'autores':autores,'preco':preco}
-
-        biblioteca[cod] = [livros]
+        biblioteca[cod] = [title,quntA,autores,preco]
 
         opc = input("Quer cadastrar mais livros? (S ou s/N ou n)")
 
@@ -58,28 +57,44 @@ while quant > 0:
 
     print("\n\t---BUSCANDO LIVRO---\n")
 
-    opc = input("Procura livro por código(c)\nProcura livro por titulo(t)\nDigite a opção: ")
+    opc = input("Procura livro por código(c)\nProcura livro por titulo(t)\nVer o livros com valor de R$50,00 para cima(p)\nDigite a opção: ")
 
     if opc == "c" or opc == "C":
 
-        codBusca = int(input("Qual é o código do livro: "))
+        codBusca = int(input("\nQual é o código do livro: "))
 
         if codBusca in biblioteca.keys():
-            print(biblioteca.get(codBusca))
+            livro = biblioteca[codBusca]
+            print(f'Titulo: {livro[0]}')
+            print(f'Codigo: {codBusca}')
+            print(f'Numero de autores:{livro[1]}')
+            print(f'Autores: {livro[2]}')
+            print(f'Preco: {livro[3]}')
+
         else:
             print("este livro não está cadastradado")
     
     elif opc == "t" or opc == "T":
 
-        titleBusca = input("Qual é o título do livro: ")
-
-
         
-        if titleBusca in livros.values():
-                print(dict.values(biblioteca))
-                
+        for livro in biblioteca.values():
+            titleBusca = input("\nQual é o título do livro: ")
+            if livro[0] == titleBusca:
+                print(f'Título: {livro[0]}')
+                print(f'Codigo: {list(biblioteca.keys())[list(biblioteca.values()).index(livro)]}')
+                print(f'Numero de autores: {livro[1]}')
+                print(f'Autores:{livro[2]}')
+                print(f'preco: {livro[3]}')
             
+    elif opc == "p" or opc == "P":
         
+        for codP, livro in biblioteca.items():
+            if livro[3] >= 50:
+                print('-=' * 35)
+                print(f"| {'Codigo':^10} | {'Titulo':^30} | {'Preço':^20} |")
+                print('-' * 70)
+                print(f'| {codP:^10} | {title:^30} | {preco:^20.2f} |')
+                print('-=' * 35)
 
     else:
         print("Está opção não exite!")
