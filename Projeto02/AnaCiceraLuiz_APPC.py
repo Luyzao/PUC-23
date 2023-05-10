@@ -144,7 +144,6 @@ while ten > 0:
                                             
                                     else:
                                         print (f"\n\t --VALOR DIGITADO INSUFICIENTE PARA PAGAMENTO-- \n")
-                                            
 
 
     # SISTEMA DE TROCO DO CAIXA
@@ -264,7 +263,7 @@ while ten > 0:
                                     nota100 = 0
                                     res100 = 4
 
-                                    nota50 = 0
+                                    nota50 = 1
                                     res50 = 6
 
                                     nota10 = 0
@@ -287,7 +286,7 @@ while ten > 0:
                                         if trocoTotal >=200 and nota200 < 2:
 
                                             trocoTotal -= 200
-                                            nota200+=1
+                                            nota200 += 1
                                             
                                         
                                                         
