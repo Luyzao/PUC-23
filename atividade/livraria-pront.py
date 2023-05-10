@@ -78,9 +78,9 @@ while quant > 0:
     
     elif opc == "t" or opc == "T":
 
-        
+        titleBusca = input("\nQual é o título do livro: ")
         for livro in biblioteca.values():
-            titleBusca = input("\nQual é o título do livro: ")
+            
             if livro[0] == titleBusca:
                 print(f'Título: {livro[0]}')
                 print(f'Codigo: {list(biblioteca.keys())[list(biblioteca.values()).index(livro)]}')
@@ -97,6 +97,8 @@ while quant > 0:
                 print('-' * 70)
                 print(f'| {codP:^10} | {livro[0]:^30} | {livro[3]:^20.2f}|')
                 print('-=' * 35)
+            else:
+                print("Nenhum livro dastrado acima de R$50,00")
 
     elif opc == "s" or opc == "S":
         quant = 0
