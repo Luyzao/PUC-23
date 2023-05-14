@@ -90,15 +90,15 @@ while quant > 0:
             
     elif opc == "p" or opc == "P":
         
-        for codP, livro in biblioteca.items():
-            if livro[3] >= 50:
-                print('-=' * 35)
-                print(f"| {'Codigo':^10} | {'Titulo':^30} | {'Preço':^20} |")
-                print('-' * 70)
-                print(f'| {codP:^10} | {livro[0]:^30} | {livro[3]:^20.2f}|')
-                print('-=' * 35)
-            else:
-                print("Nenhum livro dastrado acima de R$50,00")
+            for codP, livro in biblioteca.items():
+                if livro[3] >= 50:
+                    print('-=' * 35)
+                    print(f"| {'Codigo':^10} | {'Titulo':^30} | {'Preço':^20} |")
+                    print('-' * 70)
+                    print(f'| {codP:^10} | {livro[0]:^30} | {livro[3]:^20.2f}|')
+                    print('-=' * 35)
+                else:
+                    print("Nenhum livro dastrado acima de R$50,00")
 
     elif opc == "s" or opc == "S":
         quant = 0
