@@ -164,18 +164,23 @@ while True:
                     if opc == 1:
                         while True:
                             nomeCO = input("Nome da cidade de origem: ")
-
-                            print("\n|| VOOS DISPONIVEIS ||\n")
-
+                            N = 0
                             for codC, cid in voos.items():
                                 if cid[0] == nomeCO:
+                                    print("\n|| VOOS DISPONIVEIS ||\n")
                                     print('-=' * 66)
                                     print(f"| {'Codigo':^10} | {'Origem':^30} | {'Destino':^20} | {'Qunt. Escalas':^21} | {'Cid. Escalas':^35} |")
                                     print('-' * 132)
                                     print(f'| {codC:^10} | {cid[0]:^30} | {cid[1]:^21}| {cid[2]:^22}| {str(cid[3]):^36}|')
                                     print('-=' * 66)
-                                else:
-                                    print("\nEste voo não existe!!\n")
+                                    N = 1
+                                elif cid[0] != nomeCO:
+                                    if N == 1:
+                                        None
+                                    else:
+                                        N = 0
+                            if N == 0:
+                                print("\nNenhum voo cadastrado nesta origem!!")
                             break
 
                     elif opc == 2:
@@ -183,29 +188,43 @@ while True:
                             nomeCO = input("Nome da cidade de origem: ")
                             nomeCD = input("Nome da cidade de destino: ")
                             listE = []
+                           
 
-                            print("\n|| VOO DISPONIVEIS COM A MENOR NUMEROD DE ESCALAS ||\n")
-                            for  cid in voos.values():
-                                if cid[0] == nomeCO and cid[1] == nomeCD:    
+                            N = 0
+                            for cidn in voos.values():
                                     
-                                    numM = cid[2]
+                                if cidn[0] == nomeCO and cidn[1] == nomeCD:
+
+                                    numM = cidn[2]
                                     listE.append(numM)
-                                    
-                                else:
-                                    print("\nEste voo não existe!!\n")
-                     
+
+                                elif cidn[0] != nomeCO and cidn[1] != nomeCD:
+                                    if N == 1:
+                                        None
+                                    else:
+                                        N = 0
+                            if N == 0:
+                                print("\nNenhum voo cadastrado nesta origem!!")  
+                            if len(listE) > 0:
+                                for cid,cidn in voos.items():
+                                        
+                                        minE = min(listE)
+                                        
                             
-                            if cid[0] == nomeCO and cid[1] == nomeCD:  
-                                minE = min(listE)
-                                for codC,cid in voos.items():
-                                    if cid[2] == minE:
-                                        print('-=' * 66)
-                                        print(f"| {'Codigo':^10} | {'Origem':^30} | {'Destino':^20} | {'Qunt. Escalas':^21} | {'Cid. Escalas':^35} |")
-                                        print('-' * 132)
-                                        print(f'| {codC:^10} | {cid[0]:^30} | {cid[1]:^21}| {cid[2]:^22}| {str(cid[3]):^36}|')
-                                        print('-=' * 66)
-                            else:
-                                    print("\nEste voo não existe!!\n")
+                                        if cidn[2] == minE:
+                                            
+                                            codigo = cid
+                                        
+                                            if cidn[0] == nomeCO and cidn[1] == nomeCD:
+                                                if codigo in voos.keys():
+                                                                td = voos[codigo]
+                                                                print("\n|| VOO DISPONIVEIS COM A MENOR NUMEROD DE ESCALAS ||\n")
+                                                                print('-=' * 66)
+                                                                print(f"| {'Codigo':^10} | {'Origem':^30} | {'Destino':^20} | {'Qunt. Escalas':^21} | {'Cid. Escalas':^35} |")
+                                                                print('-' * 132)
+                                                                print(f'| {codigo:^10} | {td[0]:^30} | {td[1]:^21}| {td[2]:^22}| {str(td[3]):^36}|')
+                                                                print('-=' * 66)                                                                          
+
                             break
                             
                     elif opc == 3:
@@ -225,4 +244,3 @@ while True:
                 
         
   
-
