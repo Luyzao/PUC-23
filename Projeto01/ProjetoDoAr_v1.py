@@ -1,12 +1,12 @@
-import cx_Oracle
-cx_Oracle.init_oracle_client(lib_dir=r"C:\oraclexe\app\oracle\instantclient_21_9")
-import sys
-import functools
+import getpass
+import oracledb
 try:
-        
-    conexao=cx_Oracle.connect(user='ADM',password='bolinho',dsn='localhost/xe')
+    conexao = oracledb.connect(
+        user = "Valentina",
+        password = "valeenzo",
+        dsn="localhost/XEPDB1"
+)
        
-
 except Exception as err:
         print('ERRO',err)
 else:
@@ -32,27 +32,66 @@ else:
                 id=input("DIGITE QUAL OPÇÃO VOCE QUER QUALIFICAR?\n OPÇÃO: ")
 
 
-                soma = (f"SELECT SUM(MP10 + MP2_5 + FMC + O3 + CO + NO2 + SO2) FROM indice WHERE id_indice = {id}")
+                soma = (f"SELECT(MP10 + MP2_5 + O3 + CO + NO2 + SO2) FROM indice WHERE id_indice = {id}")
                 for i in cursor.execute(soma):
                     res = int(''.join(map(str, i)))
                     print (res)
+
+                conta = ("SELECT COUNT(*) FROM information_schema.columns WHERE indice")
+                for i in cursor.execute(conta):
+                    quant = int(''.join(map(str, i)))
+
+                media = res/quant
+
+                Vmp10 = (f"SELECT(MP10) FROM indice WHERE id_indice = {id}")
+                for i in cursor.execute(Vmp10):
+                    mp10 = int(''.join(map(str, i)))
+                
+                Vmp2_5 = (f"SELECT(MP2_5) FROM indice WHERE id_indice = {id}")
+                for i in cursor.execute(Vmp10):
+                    mp2_5 = int(''.join(map(str, i)))
+                
+                Vo3 = (f"SELECT(O3) FROM indice WHERE id_indice = {id}")
+                for i in cursor.execute(Vmp10):
+                    o3 = int(''.join(map(str, i)))
+
+                Vco = (f"SELECT(CO) FROM indice WHERE id_indice = {id}")
+                for i in cursor.execute(Vmp10):
+                    co = int(''.join(map(str, i)))
+
+                Vno2 = (f"SELECT(NO2) FROM indice WHERE id_indice = {id}")
+                for i in cursor.execute(Vmp10):
+                    no2 = int(''.join(map(str, i)))
+
+                Vso2 = (f"SELECT(SO2) FROM indice WHERE id_indice = {id}")
+                for i in cursor.execute(Vmp10):
+                    so2 = int(''.join(map(str, i)))
+                    
                 
                                 
                     #EFEITOS
                     
-                if res >= 0 and res <= 40:
-                    print("Qualidade do ar está BOA\nEfeitos: Nenhum")
-                elif res >= 41 and res <=80:
-                    print("Qualidade do ar está MODERADA\nEfeitos: Pessoas de grupos sensiveis (crianças, idosos e \npessoas com doenças respiratórias e cardiacas) \npodem apresentar sintomas com tosse seca e \ncansaço. A população, em geral, não é afetada.")
-                elif res >= 81 and res <=120:
-                    print("Qualidade do ar está RUIM\nEfeitos: Toda a população pode apresentar sintomas como \ntosse seca, cansaço, ardor nos olhos, nariz e \ngarganta. Pessoas de grupos sensíveis (crianças, idosos e pessoas com doenças respiratórias e \ncardíacas) podem apresentar efeitos mais sérios na saúde.")
-                elif res >= 121 and res <= 200:
-                    print("Qualidade do ar está MUITO RUIM\nEfeitos: Toda a população pode apresentar agravamento dos \nsintomas como tosse seca, cansaço, ardor nos olhos, \nnariz e garganta e ainda falta de ar e respiração \nofegante. Efeitos ainda mais graves à saúde de \ngrupos sensíveis (crianças, idosos e pessoas com \ndoenças respiratórias e cardíacas).")
-                elif res > 200:
-                    print("Qualidade do ar está PÉSSIMO\nEfeitos: Toda a população pode apresentar sérios riscos de \nmanifestação de doenças respiratórias e \ncardiovasculares. Aumento de mortes prematuras \nem pessoas de grupos sensíveis.")         
+                if mp10 < 0 or mp2_5 < 0 or o3 < 0 or co < 0 or no2 < 0 or so2 < 0:
+                    print("Algum índice esta com o valor inválido! \n Reescreva os dados, por favor.")
+                    continue
+                else:
+                    if mp10 > 250 or mp2_5 > 125 or o3 > 200 or co > 15 or no2 > 1130 or so2 >800:
+                        print \
+                            ("A qualidade do ar está PÉSSIMA!\n\nEfeitos na saíde: Toda a população pode apresentar sérios riscos de \nmanifestação de doenças respiratórias e \ncardiovasculares. Aumento de mortes prematuras \nem pessoas de grupos sensíveis.")
+                    elif 150 < mp10 <= 250 or 75 < mp2_5 <= 125 or 160 < o3 <= 200 or 13 < co <= 15 or 320 < no2 <= 1130 or 365 < so2 <= 800:
+                        print \
+                            ("A qualidade do ar está MUITO RUIM!\n\nEfeitos na saúde: Toda a população pode apresentar agravamento dos \nsintomas como tosse seca, cansaço, ardor nos olhos, \nnariz e garganta, além de falta de ar e respiração \nofegante. Efeitos ainda mais graves à saúde de \ngrupos sensíveis (crianças, idosos e pessoas com \ndoenças respiratórias e cardíacas).")
+                    elif 100 < mp10 <= 150 or 50 < mp2_5 <= 75 or 130 < o3 <= 160 or 11 < co <= 13 or 240 < no2 <= 320 or 40 < so2 <= 365:
+                        print \
+                            ("A qualidade do ar está RUIM!\n\nEfeitos na saúde: Toda a população pode apresentar sintomas como \ntosse seca, cansaço, ardor nos olhos, nariz e \ngarganta. Pessoas de grupos sensíveis (crianças, idosos e \npessoas com doenças respiratórias e \ncardíacas) podem apresentar efeitos mais sérios na saúde.")
+                    elif 50 < mp10 <= 100 or 25 < mp2_5 <= 50 or 100 < o3 <= 130 or 9 < co <= 11 or 200 < no2 <= 240 or 20 < so2 <= 40:
+                        print \
+                            ("A qualidade do ar está REGULAR!\n\nEfeitos na saúde: Pessoas de grupos sensiveis (crianças, idosos e \npessoas com doenças respiratórias e cardíacas) \npodem apresentar sintomas como tosse seca e \ncansaço. A população, em geral, não é afetada.")
+                    elif mp10 <= 50 or mp2_5 <= 25 or o3 <= 100 or co <= 9 or no2 <= 200 or so2 <= 20:
+                        print \
+                            ("A qualidade do ar está BOA!\n\nEfeitos na saúde: Nenhum efeito na saúde.")
+                   
                 OPC = int(input("VOCÊ QUER VOLTAR PARA O MENU?\n1.SIM\n2.NÃO QUERO SAIR DO PROGRAMA\n"))
-                       
-       
                             
                 if(OPC == 1):
 
