@@ -98,7 +98,7 @@ else:
                     continue
                                 
                 elif OPC == 2:
-                     sys.exit(0)
+                     exit
                 else:
                         print("ESSA OPÇÂO NÃO EXISTE") 
                 

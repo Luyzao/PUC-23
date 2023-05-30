@@ -1,246 +1,292 @@
-#LUIZ GUSTAVO PINTO DA SILVA RA:23013028 // Ana Carolina Morelli Chaves RA:23017617
+import oracledb
+try:
+    conexao = oracledb.connect(
+        user="bd2402231135",
+        password="Lfwhj7",
+        dsn="172.16.12.14/XE"
+)
+       
+except Exception as err:
+        print('ERRO',err)
+else:
+    
 
-voos = {}
+        # MENU
 
-print("\n\n|| BEM VINDO AO FLYSKAY ||")
-
-while True:
         
-        print("\n1.Cadastrar novo voo\n2.Alterar info do voo\n3.Excluir voo\n4.Buscar voo\n5.Sair\n")
-
-        try:
-
-            menu = int(input("Opção: "))
-
-        except:
-            print("Está opção não existe")
-
-        if menu == 1:
-            print("\n--CADASTRANDO VOO--\n")
-            controle = 1
-            while controle == 1:
-
-                while True:
-                    try: 
-                        cod = int(input("Código do voo: "))
-                        if cod in voos.keys():
-                            print("Este codigo já exite!!")
-                        else:
-                            break
-                    except:
-                        print("\nApenas números!!!\n")
-                
-                cidadeO = input("Cidade de origem: ")
-                cidadeD = input("Cidade de destino: ")
-                while True:
-                    try:
-                        NumE = int(input("Quantas escalas: "))
-                        break
-
-                    except:
-                        print("Apenas números!!!")
-                cidadeE = []
-                if NumE >= 0:
-                    for i in range(1,NumE+1):
-                        cidE = input(f"Nome da {i}º cidade: ")
-                        cidadeE.append(cidE)
-
-                voos[cod] = [cidadeO,cidadeD,NumE,cidadeE]
-
-                print("\nVOO CADASTRADO COM SUCESSO\n")
-
-                controle2 = 1
-                while controle2 == 1:
-
-                    opc = input("Desenja cadastrar outro voo(s = sim | n = não): ")
-
-                    if opc == 's' or opc == 'S':
-                        print("\nProximo voo\n")
-                        controle2 = 0
-                        
-                    elif opc == 'n' or opc == 'N':
-                        controle2 = 0
-                        controle = 0
-                    else:
-                        print("\n---Está opção não existe!---")
-
-        elif menu == 2:
-
-            if len(voos) != 0:
-                print("\n|| ALTERAR INFO DO VOO ||\n")
-                print('-=' * 66)
-                print(f"| {'Codigo':^10} | {'Origem':^30} | {'Destino':^20} | {'Qunt. Escalas':^21} | {'Cid. Escalas':^35} |")
-                print('-' * 132)
-                for codV, voo in voos.items():
-                    print(f'| {codV:^10} | {voo[0]:^30} | {voo[1]:^21}| {voo[2]:^22}| {str(voo[3]):^36}|')
-                    print('-=' * 66)
-
-                while True:
-                    try:
-                        print("\nQUAL VOO DESEJA ALTERAR? \n")
-                        codE = int(input("Código do voo que deseja alterar: "))
-    
-                    except:
-                        print("\nApenas números!!\n")
-
-                    if codE in voos.keys():
-                       
-                        cidadeO = input("Cidade de origem: ")
-                        cidadeD = input("Cidade de destino: ")
-                        while True:
-                            try:
-                                NumE = int(input("Quantas escalas: "))
-                                break
-
-                            except:
-                                print("Apenas números!!!")
-                        cidadeE = []
-                        if NumE >= 0:
-                            for i in range(1,NumE+1):
-                                cidE = input(f"Nome da {i}º cidade: ")
-                                cidadeE.append(cidE)
-
-                        for voov,alterar in voos.items():   
-                            if  voov == codE:
-                                alterar[0] = cidadeO
-                                alterar[1] = cidadeD
-                                alterar[2] = NumE
-                                alterar[3] = cidadeE
-                                print("\nALTERAÇÂO FEITA COM SUCESSO!!\n")
-                        break
-                    else:
-                        print("\nEste voo não existe!!")
-
-            else:
-                print("\nNão ha nenhum voo cadastrado")
-
-        elif menu == 3:
-
-            if len(voos) != 0:
-
-                print("\n|| EXCLUIR VOO ||\n")
-                print('-=' * 47)
-                print(f"| {'Codigo':^10} | {'Origem':^30} | {'Destino':^20} | {'Qunt. Escalas':^21} |")
-                print('-' * 94)
-                for codV, voo in voos.items():
-                    print(f'| {codV:^10} | {voo[0]:^30} | {voo[1]:^21}| {voo[2]:^22}|')
-                    print('-=' * 47)
-
-                while True:
-                    try:
-                        print("\nQUAL VOO DESEJA EXCLUIR: \n")
-                        codE = int(input("Código do voo: "))
-    
-                    except:
-                        print("\nApenas números!!\n")
-
-                    if codE in voos.keys():
-                        voos.pop(codE)
-                        print("VOO EXCLUIDO COM SUCESSO")
-                        break
-                    else:
-                        print("\nEste voo não existe!!")
-
-            else:
-                print("\nNão ha nenhum voo cadastrado")
-
-        elif menu == 4:
+        while True:
+            print(f"1.CLASSIFICAR\n2.INSERIR\n3.EDITAR\n4.EXCLUIR\n5.SAIR")
+            opc = int(input("DIGITE UMA DAS OPÇÕES: "))
             
-            if len(voos) != 0 :
-
-                print("\n|| BUSCAR VOOS ||\n")
+            # QUALIFICAR
+            
+            if opc == 1:
                 
-                while True:
+                cursor = conexao.cursor()
+
+                vrf = cursor.execute("SELECT COUNT(codigo) FROM indice")
+                for i in vrf:
+                      vrf = int(''.join(map(str, i)))
+
+                if vrf == 0:
+                    print("Não nenhuma amostra!")
+                    
+                else:
+    
+                    while True:
+                        sql = (f"SELECT codigo FROM indice")
+                        for i in cursor.execute(sql):
+                            print (f"OPÇÃO: {i}")
+                            dlt = int(''.join(map(str, i)))
+
+                        id=int(input("DIGITE QUAL OPÇÃO VOCE QUER QUALIFICAR?\n OPÇÃO: "))
+
+                        if id != dlt:
+                             
+                             print("Não existe está opção!")
+                             
+                        else:
+                
+                            soma = (f"SELECT (MP10 + MP2_5 + O3 + CO + NO2 + SO2) FROM indice WHERE codigo = {id}")
+                            for i in cursor.execute(soma):
+                                res = int(''.join(map(str, i)))
+                                print (res)
+
+                            conta = ("SELECT COUNT(*) FROM all_tab_cols WHERE table_name = 'INDICE'")
+                            for i in cursor.execute(conta):
+                                quant = int(''.join(map(str, i)))
+                                quant - 2
+                                print(quant)
+                               
+
+
+                            media = res/quant
+
+                            Vmp10 = (f"SELECT(MP10) FROM indice WHERE codigo = {id}")
+                            for i in cursor.execute(Vmp10):
+                                mp10 = int(''.join(map(str, i)))
+                            
+                            Vmp2_5 = (f"SELECT(MP2_5) FROM indice WHERE codigo = {id}")
+                            for i in cursor.execute(Vmp10):
+                                mp2_5 = int(''.join(map(str, i)))
+                            
+                            Vo3 = (f"SELECT(O3) FROM indice WHERE codigo = {id}")
+                            for i in cursor.execute(Vmp10):
+                                o3 = int(''.join(map(str, i)))
+
+                            Vco = (f"SELECT(CO) FROM indice WHERE codigo = {id}")
+                            for i in cursor.execute(Vmp10):
+                                co = int(''.join(map(str, i)))
+
+                            Vno2 = (f"SELECT(NO2) FROM indice WHERE codigo = {id}")
+                            for i in cursor.execute(Vmp10):
+                                no2 = int(''.join(map(str, i)))
+
+                            Vso2 = (f"SELECT(SO2) FROM indice WHERE codigo = {id}")
+                            for i in cursor.execute(Vmp10):
+                                so2 = int(''.join(map(str, i)))
+                                
+                            
+                                            
+                                #EFEITOS
+                                
+                            if mp10 < 0 or mp2_5 < 0 or o3 < 0 or co < 0 or no2 < 0 or so2 < 0:
+                                print("Algum índice esta com o valor inválido! \n Reescreva os dados, por favor.")
+                                continue
+                            else:
+                                if mp10 > 250 or mp2_5 > 125 or o3 > 200 or co > 15 or no2 > 1130 or so2 >800:
+                                    print \
+                                        ("A qualidade do ar está PÉSSIMA!\n\nEfeitos na saíde: Toda a população pode apresentar sérios riscos de \nmanifestação de doenças respiratórias e \ncardiovasculares. Aumento de mortes prematuras \nem pessoas de grupos sensíveis.")
+                                elif 150 < mp10 <= 250 or 75 < mp2_5 <= 125 or 160 < o3 <= 200 or 13 < co <= 15 or 320 < no2 <= 1130 or 365 < so2 <= 800:
+                                    print \
+                                        ("A qualidade do ar está MUITO RUIM!\n\nEfeitos na saúde: Toda a população pode apresentar agravamento dos \nsintomas como tosse seca, cansaço, ardor nos olhos, \nnariz e garganta, além de falta de ar e respiração \nofegante. Efeitos ainda mais graves à saúde de \ngrupos sensíveis (crianças, idosos e pessoas com \ndoenças respiratórias e cardíacas).")
+                                elif 100 < mp10 <= 150 or 50 < mp2_5 <= 75 or 130 < o3 <= 160 or 11 < co <= 13 or 240 < no2 <= 320 or 40 < so2 <= 365:
+                                    print \
+                                        ("A qualidade do ar está RUIM!\n\nEfeitos na saúde: Toda a população pode apresentar sintomas como \ntosse seca, cansaço, ardor nos olhos, nariz e \ngarganta. Pessoas de grupos sensíveis (crianças, idosos e \npessoas com doenças respiratórias e \ncardíacas) podem apresentar efeitos mais sérios na saúde.")
+                                elif 50 < mp10 <= 100 or 25 < mp2_5 <= 50 or 100 < o3 <= 130 or 9 < co <= 11 or 200 < no2 <= 240 or 20 < so2 <= 40:
+                                    print \
+                                        ("A qualidade do ar está REGULAR!\n\nEfeitos na saúde: Pessoas de grupos sensiveis (crianças, idosos e \npessoas com doenças respiratórias e cardíacas) \npodem apresentar sintomas como tosse seca e \ncansaço. A população, em geral, não é afetada.")
+                                elif mp10 <= 50 or mp2_5 <= 25 or o3 <= 100 or co <= 9 or no2 <= 200 or so2 <= 20:
+                                    print \
+                                        ("A qualidade do ar está BOA!\n\nEfeitos na saúde: Nenhum efeito na saúde.")
+                            
+                            OPC = int(input("VOCÊ QUER VOLTAR PARA O MENU?\n1.SIM\n2.NÃO QUERO SAIR DO PROGRAMA\n"))
+                                        
+                            if(OPC == 1):
+
+                                continue
+                                            
+                            elif OPC == 2:
+                                exit
+                            else:
+                                    print("ESSA OPÇÂO NÃO EXISTE") 
+                            
+                            break
+            
+                
+                
+            # INSERIR 
+            
+            
+            
+            elif opc ==2:
+                
+                cursor = conexao.cursor()
+
+                nome = input('Nome da amostra: ')
+                mp10 = int(input("MP10: "))
+                mp2_5 = int(input("MP2,5: "))
+                o3 = int(input("O3: "))
+                co = int(input("CO: "))
+                no2 = int(input("NO2: "))
+                so2 = int(input("SO2: "))
+                    
+                cursor.execute(f"INSERT INTO indice (NOME,MP10,MP2_5,O3,CO,NO2,SO2) VALUES ('{nome}',{mp10},{mp2_5},{o3},{co},{no2},{so2})")
+                
+                salvar = int(input("VOCÊ DESEJA SALVAR VOLTAR PARA MENU?\n1.SIM\n2.NÃO APENAS IR PARA O MENU\n"))
+                if salvar == 1:
+                    conexao.commit() 
+                    continue
+                   
+                elif salvar == 2:
+                    print("VOLTANDO PARA O MENU")
+                    continue
+                else:
+                    print("ESTÁ OPÇÃO NÃO EXISTE. ")
+                
+                break
+            
+            
+            # ALTERAR
+            
+            
+            elif opc ==3:
+                
+                cursor = conexao.cursor()
+
+                vrf = cursor.execute("SELECT COUNT(codigo) FROM indice")
+                for i in vrf:
+                      vrf = int(''.join(map(str, i)))
+
+                if vrf == 0:
+                    print("Não nenhuma amostra!")
+                    
+                else:
+
+                    while True:
+
+                        sql = (f"SELECT codigo FROM indice")
+                        for i in cursor.execute(sql):
+                            print (f"OPÇÃO: {i}")
+                            dlt = int(''.join(map(str, i)))
+                                        
+                        id = int(input("QUAL OPÇÃO VOCÊ QUER ALTERA?\nOPÇÃO: "))
+
+                        if dlt != id:
+                            print("Esta opção não existe")
+                        else:
+                        
+                            opcao = (f"SELECT MP10,MP2_5,O3,CO,NO2,SO2 FROM indice WHERE codigo = {id}")
+                            for i in cursor.execute(opcao):
+                                            print (f"OPÇÃO ESCOLHIDDA: {i}")
+                            
+                        
+                            mp10 = int(input("MP10: "))
+                            mp2_5 = int(input("MP2,5: "))
+                            o3 = int(input("O3: "))
+                            co = int(input("CO: "))
+                            no2 = int(input("NO2: "))
+                            so2 = int(input("SO2: "))
+                            
+                            alterar =(f"UPDATE indice SET MP10 = {mp10},MP2_5 = {mp2_5}, O3 = {o3}, CO = {co},NO2 = {no2},SO2 = {so2} WHERE codigo = {id}")
+                            cursor.execute(alterar)
+                            
+                            
+                            
+                            conf = int(input("VOCÊ REALEMENTE QUER ALTERAR?\n1.SIM\n2.NÃO, VOLTAR PARA O MENU\nOPÇÃO: "))
+                            
+                            if conf == 1:
+                                
+                                    conexao.commit()
+                                    
+                                    
+                            elif conf == 2:
+                                continue
+                            else:
+                                print("ESTA OPÇÃO NÃO EXISTE.")
+                            
+                            break
+            
+            
+            # DELETAR
+            
+            
+            elif opc ==4:
+
+                cursor = conexao.cursor()
+                vrf = cursor.execute("SELECT COUNT(codigo) FROM indice")
+                for i in vrf:
+                      vrf = int(''.join(map(str, i)))
+
+                if vrf == 0:
+                    print("Não nenhuma amostra!")
+                    
+                else:
+
                     
                     while True:
-                        print("\n1.Buscar por cidade de origem\n2.Buscar ppor cidade de origem e destino\n3.Voltar\n")
-                        try:
-                            opc = int(input("Opção: "))
-                            break
 
-                        except:
-                            print("Está opção não existe")
-                    
-                    if opc == 1:
-                        while True:
-                            nomeCO = input("Nome da cidade de origem: ")
-                            N = 0
-                            for codC, cid in voos.items():
-                                if cid[0] == nomeCO:
-                                    print("\n|| VOOS DISPONIVEIS ||\n")
-                                    print('-=' * 66)
-                                    print(f"| {'Codigo':^10} | {'Origem':^30} | {'Destino':^20} | {'Qunt. Escalas':^21} | {'Cid. Escalas':^35} |")
-                                    print('-' * 132)
-                                    print(f'| {codC:^10} | {cid[0]:^30} | {cid[1]:^21}| {cid[2]:^22}| {str(cid[3]):^36}|')
-                                    print('-=' * 66)
-                                    N = 1
-                                elif cid[0] != nomeCO:
-                                    if N == 1:
-                                        None
-                                    else:
-                                        N = 0
-                            if N == 0:
-                                print("\nNenhum voo cadastrado nesta origem!!")
-                            break
+                        sql = (f"SELECT codigo FROM indice")
+                        for i in cursor.execute(sql):
+                            print (f"OPÇÃO: {i}")
+                            dlt = int(''.join(map(str, i)))
 
-                    elif opc == 2:
-                        while True:
-                            nomeCO = input("Nome da cidade de origem: ")
-                            nomeCD = input("Nome da cidade de destino: ")
-                            listE = []
-                           
-
-                            N = 0
-                            for cidn in voos.values():
+                        id = int(input("QUAL OPÇÃO VOCÊ DESEJA DELETAR?\nOPÇÃO: "))
+                        
+                        if dlt != id:
+                            print("Esta opção não existe")
+                        
+                        else:
+                            
+                            delete = (f"DELETE FROM indice WHERE codigo = {id} ")
+                            cursor.execute(delete)
+                            print(cursor.rowcount,"record(s) deleted")
+                            
+                            
+                            conf = int(input("VOCÊ REALEMENTE QUER DELETAR?\n1.SIM\n2.NÃO, VOLTAR PARA O MENU\nOPÇÃO: "))
+                            
+                            if conf == 1:
+                                
+                                    conexao.commit()
                                     
-                                if cidn[0] == nomeCO and cidn[1] == nomeCD:
-
-                                    numM = cidn[2]
-                                    listE.append(numM)
-
-                                elif cidn[0] != nomeCO and cidn[1] != nomeCD:
-                                    if N == 1:
-                                        None
-                                    else:
-                                        N = 0
-                            if N == 0:
-                                print("\nNenhum voo cadastrado nesta origem!!")  
-                            if len(listE) > 0:
-                                for cid,cidn in voos.items():
-                                        
-                                        minE = min(listE)
-                                        
-                            
-                                        if cidn[2] == minE:
-                                            
-                                            codigo = cid
-                                        
-                                            if cidn[0] == nomeCO and cidn[1] == nomeCD:
-                                                if codigo in voos.keys():
-                                                                td = voos[codigo]
-                                                                print("\n|| VOO DISPONIVEIS COM A MENOR NUMEROD DE ESCALAS ||\n")
-                                                                print('-=' * 66)
-                                                                print(f"| {'Codigo':^10} | {'Origem':^30} | {'Destino':^20} | {'Qunt. Escalas':^21} | {'Cid. Escalas':^35} |")
-                                                                print('-' * 132)
-                                                                print(f'| {codigo:^10} | {td[0]:^30} | {td[1]:^21}| {td[2]:^22}| {str(td[3]):^36}|')
-                                                                print('-=' * 66)                                                                          
-
+                            elif conf == 2:
+                                continue
+                            else:
+                                print("ESTA OPÇÃO NÃO EXISTE.")
+                                
                             break
-                            
-                    elif opc == 3:
-                        break
-
+            elif opc ==5:
+                conexao.close()
+                break
             else:
-                print("\nnão existe nenhum voo cadastrado")
+                print("DIGITE UMA OPÇÂO VÁLIDA.")
+            
 
-        elif menu == 5:
-            break
+       
+            
+        
+    
+    
+    
+    
+    
 
-        else:
-            print("\n---Está opção não existe!---")
-                        
-                        
+    
+
+
         
-                
-        
-  
+    
+
+
+
+    
