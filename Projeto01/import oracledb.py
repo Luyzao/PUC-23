@@ -101,7 +101,7 @@ else:
            
             print(f"\n\t {'MENU':^65} ")
             print(f"\t{'='*69}")
-            print(f"\t| {'1.CLASSIFICAR':^10} | {'2.INSERIR':^10} | {'3.EDITAR':^10} | {'4.EXCLUIR':^10} | {'5.SAIR':^10} |")
+            print(f"\t| {'1.INSERIR':^10} | {'2.ALTERAR':^10} | {'3.EXCLUIR':^10} | {'4.CLASSIFICAR':^10} | {'5.SAIR':^10} |")
             print(f"\t{'='*69}")
 
             while True:
@@ -113,7 +113,7 @@ else:
 
             # QUALIFICAR
             
-            if opc == 1:
+            if opc == 4:
                 
                 cursor = conexao.cursor()
 
@@ -206,12 +206,19 @@ else:
                                 print (f"\n\t| {'Efeitos na saúde:':^65} |\n\t{'-'*69}\n\t| {' Nenhum efeito na saúde.':^65} |\n ")
                                 print(f"\t{'='*69}\n\n")
 
+                        print(f"\t{'MEDIA':^65}")
+                        print(f"\t{'='*69}")
+                        print(f"\t| {'MP10':^9} | {'MP2,5':^8} | {'O3':^8} | {'CO':^8} | {'NO2':^8} | {'SO2':^9} |")
+                        print(f"\t{'-'*69}")
+                        print(f"\t| {mp10:^9} | {mp2_5:^8} | {o3:^8} | {co:^8} | {no2:^8} | {so2:^9} |")
+                        print(f"\t{'='*69}\n\n")
+
                         break
             
         
             # INSERIR 
               
-            elif opc ==2:
+            elif opc ==1:
                 
                 cursor = conexao.cursor()
                 os.system('cls')
@@ -324,30 +331,16 @@ else:
                          print(f"\tApenas números")
                          print(f"\t{'-'*69}")
                     
-                
+                cursor.execute(f"INSERT INTO indice (NOME,MP10,MP2_5,O3,CO,NO2,SO2) VALUES ('{nome}',{mp10},{mp2_5},{o3},{co},{no2},{so2})")
+                conexao.commit() 
                 os.system('cls')
-                while True:
-                    salvar = int(input(f"\n\t{'='*69}\n\t| {'VOCÊ DESEJA SALVAR E VOLTAR PARA MENU?':^65} |\n\t{'-'*69}\n\t| {'1.SIM | 2.NÃO APENAS IR PARA O MENU':^65} |\n\t{'='*69}\n\tOPÇÃO: "))
-                    if salvar == 1:
-
-                        cursor.execute(f"INSERT INTO indice (NOME,MP10,MP2_5,O3,CO,NO2,SO2) VALUES ('{nome}',{mp10},{mp2_5},{o3},{co},{no2},{so2})")
-                        conexao.commit() 
-                        os.system('cls')
-                        break
-                    
-                    elif salvar == 2:
-                        os.system('cls')
-                        break
-                    else:
-                        print("ESTÁ OPÇÃO NÃO EXISTE. ")
-                    
-                    break
+               
             
             
             # ALTERAR
             
             
-            elif opc ==3:
+            elif opc ==2:
 
                 os.system('cls')
                 print(f"\t{'='*69}")
@@ -487,31 +480,18 @@ else:
                                         print(f"\t{'-'*69}")
                                 
                             
-                                alterar =(f"UPDATE indice SET MP10 = {mp10},MP2_5 = {mp2_5}, O3 = {o3}, CO = {co},NO2 = {no2},SO2 = {so2} WHERE codigo = {id}")
-                                            
-                                while True:
-                                    os.system('cls')
-                                    conf = int(input(f"\n\t{'='*69}\n\t| {'VOCÊ DESEJA ALTERAR E VOLTAR PARA MENU?':^65} |\n\t{'-'*69}\n\t| {'1.SIM | 2.NÃO APENAS IR PARA O MENU':^65} |\n\t{'='*69}\n\tOPÇÃO: "))
-                                        
-                                    if conf == 1:
-
-                                        cursor.execute(alterar)
-                                        conexao.commit()
-                                        controle = 1
-                                        os.system('cls')
-                                        break
-                                                        
-                                    elif conf == 2:
-                                        controle = 1
-                                        os.system('cls')
-                                        break
-                                    else:
-                                        print("ESTA OPÇÃO NÃO EXISTE.")
+                                update = (f"UPDATE indice SET MP10 = {mp10},MP2_5 = {mp2_5}, O3 = {o3}, CO = {co},NO2 = {no2},SO2 = {so2} WHERE codigo = {id}")
+                                cursor.execute(update)
+                                conexao.commit()
+                                controle = 1
+                                os.system('cls')
                                 break
+
+                       
             
             # DELETAR
                 
-            elif opc ==4:
+            elif opc ==3:
 
                 os.system('cls')
                 print(f"\t{'='*69}")
@@ -550,30 +530,19 @@ else:
                             else:
                             
                                 delete = (f"DELETE FROM indice WHERE codigo = {id} ")
-
-                                while True:
-
-                                    conf = int(input("VOCÊ REALEMENTE QUER DELETAR?\n1.SIM\n2.NÃO, VOLTAR PARA O MENU\nOPÇÃO: "))
-
-                                    if conf == 1:
-                                        
-                                        cursor.execute(delete)
-                                        conexao.commit()
-                                        print(cursor.rowcount,"record(s) deleted")
-                                        
-                                        controle = 1
-                                        break
+     
+                                cursor.execute(delete)
+                                conexao.commit()
+                                print(cursor.rowcount,"record(s) deleted")       
+                                controle = 1
+                                os.system('cls')
+                                break
+                                       
        
-                                    elif conf == 2:
-                                      
-                                        controle = 1
-                                        break
-
-                                    else:
-                                        print("ESTA OPÇÃO NÃO EXISTE.")
                         
             elif opc ==5:
                 conexao.close()
+                os.system('cls')
                 break
             else:
                 print("DIGITE UMA OPÇÂO VÁLIDA.")
