@@ -1,0 +1,68 @@
+### Listas  #########################################################################################
+
+## adicionar item na lista
+	1)	lista.append()
+
+
+## imprimir lista 
+	1)	for l in lista:
+			print(l,end=' ')
+			
+	1)	for nota in notas:
+    			print(f"Nota: ",nota)
+    			
+    	1)	for l in range(0,len(lista),2): # l é igual ao indice 
+    			print(f"NOME: {lista[l]} NOTA: {lista[l+1]}")
+			
+## percorrer elementos de uma lista e verificar se é igual
+
+	1)	for casa in casas:
+			if casa[0] == tipo_b
+			
+## percorrer elementos de listas diferentes na mesma posição
+
+	1)	for casa in range(len(casas)):
+			if casas[casa]==GAB[r]:
+				
+
+
+
+### Dicionario  ######################################################################################
+
+## adicionar dicionario:
+
+	1)	dicionario[chave]=[nome,nota]
+		
+## DELETAR 
+
+del dicionario[chave]
+
+dicionario.pop(chave)
+
+## buscar se a chave já existe
+
+	1)	if chave in dicionario.keys():
+			faça isso
+		else: 
+			faça isso
+			
+	2) 	if 'chave' in dicionario:
+				
+## buscar por chave 
+
+	1)	for produto in tabela_preco.keys():
+			print(f"Produto: {produto}")
+			
+
+
+## percorrer um dicionario
+
+	1)	for preco in tabela_preco.values():  #busca em valores
+			if busca_titulo ==preco[0]
+				print(f"Preco: {preco}")
+
+	2)	for x, dados in d_alunos.items(): #busca com chaves  e items
+			if busca==dados[0]
+   		 	print(f'RA: {x} | NOME: {dados[0]} | NOTA: {dados[1]} |', end=' ') ##tratar como lista dado
+   			 if dados[1]>=5: 
+        			print("Aprovado")

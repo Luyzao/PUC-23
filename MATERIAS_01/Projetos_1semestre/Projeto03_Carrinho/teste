@@ -1,0 +1,223 @@
+/* 
+* Este código faz parte do projeto Robô industrial. Para saber mais sobre o mesmo acesse: roboticaufopa.blogspot.com.br/
+ * Neste código considera-se que os dois LDRs do lado de fora da linha. 
+ * Considera o sensor IR no meio da linha preta
+ * Testes realizados com sucesso
+ */
+
+//Pinos analgicos e digitais
+const int LdrEsquerda = A1;
+const int LdrDireita = A0;
+int SensorIR = 10;
+
+//Variveis globais
+float _ValorLDREsquerda = 0;
+float _ValorLDRDireta = 0;
+int _ValorIR = 0; 
+int _Contador = 0;
+int _VetorSensorIR[100];
+int _VetorLdrEsq[100];
+int _VetorLdrDir[100];
+int _VoltaParaEsquerda; //Utilizado na funço VoltaParaOcaminho
+int _VoltaParaDireita; //Utilizado na função VoltaParaOCaminho
+
+//Motores em portas PWM
+int VelMotorEsq = 5;     //Velocidade motor esquerda
+int VelMotorDir = 6;     //Velocidade motor direita
+int DirecaoMotorEsq = 4;    //Diraçao motor esquerda
+int DirecaoMotorDir = 7;    //Diraçao motor esquerda
+
+
+void setup() {
+  Serial.begin(9600);
+  pinMode(VelMotorEsq, OUTPUT);
+  pinMode(DirecaoMotorDir, OUTPUT);
+  pinMode(VelMotorDir, OUTPUT);
+  pinMode(VelMotorEsq, OUTPUT);
+
+  pinMode(LdrDireita, INPUT);
+  pinMode(LdrEsquerda, INPUT);
+  pinMode(SensorIR, INPUT);
+}
+
+void loop() {
+  SegueLinha();
+}
+
+void stop(void)//stop
+{
+  digitalWrite(VelMotorEsq,LOW);  
+  digitalWrite(VelMotorDir,LOW);     
+}  
+
+void AndaFrente(char a,char b)  //Anda Para Frente
+{
+  analogWrite (VelMotorEsq,a); //PWM controle de velocidade
+  digitalWrite(DirecaoMotorEsq,HIGH);   
+  analogWrite (VelMotorDir,b);   
+  digitalWrite(DirecaoMotorDir,HIGH);
+} 
+
+void MarchaRe (char a,char b) //Move para trás
+{
+  analogWrite (VelMotorEsq,a);
+  digitalWrite(DirecaoMotorEsq,LOW);  
+  analogWrite (VelMotorDir,b);   
+  digitalWrite(DirecaoMotorDir,LOW);
+}
+
+void Direita (char a,char b)//Vira a esquerda
+{
+  analogWrite (VelMotorEsq,a);
+  digitalWrite(DirecaoMotorEsq,LOW);   
+  analogWrite (VelMotorDir,b);   
+  digitalWrite(DirecaoMotorDir,HIGH);
+}
+
+void Esquerda (char a,char b){  //Vira a direita
+  analogWrite (VelMotorEsq,a);
+  digitalWrite(DirecaoMotorEsq,HIGH);   
+  analogWrite(VelMotorDir,b);   
+  digitalWrite(DirecaoMotorDir,LOW);
+}
+
+//Lê sensores de luminosidade
+void LeiturasSensoresLum(){
+  _ValorIR = _VetorSensorIR[_Contador] = digitalRead(SensorIR);
+  _ValorLDREsquerda = _VetorLdrEsq[_Contador] = analogRead(LdrEsquerda);
+  _ValorLDRDireta = _VetorLdrDir[_Contador] = analogRead(LdrDireita); 
+}
+
+void SegueLinha(){
+  LeiturasSensoresLum(); //Chama a leituras dos sensores de luminosidade
+  if((_ValorLDREsquerda>=1)&&(_ValorIR==1)&&(_ValorLDRDireta>=1)) //100% na linha
+  {
+    AndaFrente(255,255);
+    Serial.println("Anda Frente");
+  }
+
+  //LDR Esquerdo tocando na linha
+  else if ((_ValorLDREsquerda>=1)&&(_ValorIR==1)&&(_ValorLDRDireta<1)) //Saindo da linha pela esquerda
+  {
+
+    Direita(100,200);
+    Serial.println("Direita");
+  }
+
+  //LDR Direito tocando na linha
+  else if  ((_ValorLDREsquerda<1)&&(_ValorIR==1)&&(_ValorLDRDireta>=1)) //Saindo pela direita
+  {
+    Esquerda(200,100);
+    Serial.println("Esquerda");
+  }
+
+  else if  ((_ValorLDREsquerda>=1)&&(_ValorIR==0)&&(_ValorLDRDireta<1)) //Saindo MUITO pela esquerda
+  {
+    Direita(255,255);
+    Serial.println("Direita acentuada");
+  }
+
+  else if ((_ValorLDREsquerda<1)&&(_ValorIR==0)&&(_ValorLDRDireta>=1)) //Saindo muito pela direita
+  {
+    Esquerda(255,255);
+    Serial.println("Esquerda acentuada");
+  }
+
+  else  if((_ValorLDREsquerda>0)&&(_ValorIR==0)&&(_ValorLDRDireta>0))
+  {
+    _Contador--; //Evita que o _Contador incremente, pois ele retorna para o _Contador anterior. Quando ele incrementar, ele voltara ao que era antes. e assim por diante. 
+
+    VoltaParaAlinha(); //Chama o metodo capaz de fazer o robo voltar para linha
+
+      if(_VoltaParaEsquerda > _VoltaParaDireita){
+      Esquerda (255,255);  
+      Serial.println("Volta ao caminho - virando a esquerda");
+    }
+    else if((_VoltaParaDireita > _VoltaParaEsquerda)){
+      Direita (255,255); 
+      Serial.println("Volta ao caminho - virando a direita");
+    }
+    else if((_VoltaParaDireita == 0) && (_VoltaParaEsquerda == 0)) {
+      stop();
+      Serial.println("Parado");
+    } 
+  }
+  _Contador++; //Incrementa _Contador
+
+  if(_Contador == 100){
+    int x, y;
+    y = 95; 
+    for(x = 0; x<5; x++){
+      _VetorLdrEsq[x] = _VetorLdrEsq[y];
+      _VetorLdrDir[x] = _VetorLdrDir[y];
+      _VetorSensorIR[x] = _VetorSensorIR[y];
+      y++;
+    }
+    _Contador = 5;
+  }
+}
+
+/**
+ * A logica aqui é a seguinte:
+ * As variaveis _VoltaParaEsquerda e _VoltaParaDireita armazazerão os dados dos vetores apenas se estes forem zero. Ora, o vetor é zero, 
+ * apenas quanto o leitor esta em cima da fita preta. Logo, quem tiver com mais zeros, foi o último a descer da fita preta. 
+ * Dessa forma, as variáveis supracitadas só incrementam se o vetor for zero. Dessa forma, a variável que for maior, indicará com precisão
+ * qual foi a ultima LDR a descer da linha. 
+ */
+int VoltaParaAlinha(){
+  int k;
+  _VoltaParaEsquerda = 0;
+  _VoltaParaDireita = 0;
+
+  for(k = 0; k <= _Contador; k++){
+    if(_VetorLdrEsq[k] == 0){ //Se o vetor for igual a zero, incrementa o _Contador. 
+      _VoltaParaEsquerda++;
+    }
+    if(_VetorLdrDir[k] == 0){
+      _VoltaParaDireita++;
+    } 
+  }
+  return(_VoltaParaEsquerda,_VoltaParaDireita); 
+}
+
+
+//============================ PARTE DO CÓDIGO UTILIZADO PARA TESTE ============================================
+
+//Esse metodo só é chamado caso precise fazer algum teste. 
+void ImprimeVetores(){
+  if(_Contador == 40){
+    int x;
+    //Vetor do Sensor IR
+    Serial.println("Vetor do Sensor IR");
+    for(x = 0; x <= _Contador; x++){
+      int Temp = _VetorSensorIR[x];
+      Serial.println(Temp);  
+    }
+
+    //Vetor do LDR Esquerdo
+    Serial.println("Vetor do LDR Esquerdo");
+    for(x = 0; x <= _Contador; x++){
+      Serial.println(_VetorLdrEsq[x] );  
+    }
+
+    //Vetor LDR Direito
+    Serial.println("Vetor do LDR Direito");
+    for(x = 0; x <= _Contador; x++){
+      Serial.println(_VetorLdrDir[x] );  
+    }
+    delay(3000);
+  } 
+}
+
+void ImprimeValoresSensores(){
+  Serial.println("===============");
+  Serial.print("LDR Esquerda:  ");
+  Serial.println(_ValorLDREsquerda);
+  Serial.print("Sensor   :  ");
+  Serial.println(_ValorIR);
+  Serial.print("LDR Direita:  ");
+  Serial.println(_ValorLDRDireta);
+  Serial.println("");
+  Serial.println("");
+  Serial.println(""); 
+}

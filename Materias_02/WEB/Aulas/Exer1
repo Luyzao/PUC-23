@@ -1,0 +1,13 @@
+   
+   CICERA EDUARDA DA COSTA 23016727
+   
+    Como será implementada a ordenação alfabética em grupos funcionais no sistema de cadastro de contatos telefônicos?
+    Quais medidas de segurança da informação serão adotadas para proteger os dados, incluindo informações como nome, contato, email, código funcional e vínculos produtivos?
+    Como será configurado o ambiente web para o sistema? Onde o servidor externo estará hospedado e como será gerenciado o banco de dados?
+    Como será realizada a atualização dos dados? Os dados serão importados de uma planilha e disponibilizados para consulta pública? Como isso será feito?
+    Como será implementado o controle de acesso restrito individual no sistema? Quais mecanismos de autenticação e autorização serão utilizados?
+    Como funcionará o processo de alteração de cadastro sob demanda? Que tipo de validações serão aplicadas antes de efetivar as alterações?
+    Qual é a importância do limite de tempo de 60 minutos mencionado? Isso se refere a alguma restrição específica do sistema?
+    Poderia fornecer mais detalhes sobre como o investimento de 100.000 será utilizado no desenvolvimento e manutenção do sistema de cadastro?
+    Como será implementada a criptografia dos dados no sistema? Quais algoritmos ou métodos de criptografia serão utilizados para garantir a segurança dos dados armazenados?
+    Qual será o escopo e a disponibilidade do suporte oferecido para os usuários do sistema de cadastro de contatos telefônicos? Como os problemas e dúvidas serão tratados?

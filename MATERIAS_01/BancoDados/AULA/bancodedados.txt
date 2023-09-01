@@ -1,0 +1,207 @@
+#criar tabela
+
+CREATE TABLE table_name
+(
+column1 datatype,
+column2 datatype,
+...
+column_n datatype
+);
+
+CREATE TABLE alunos
+(
+RA integer,
+Nome varchar2(30),
+Idade date,
+Cidade varchar2(20)
+);
+
+#para descrever conteudo 
+describe alunos;
+
+
+#alterar
+
+ALTER TABLE alunos ADD UF char(2);
+ALTER TABLE alunos RENAME COLUMN UF to
+Estado;
+ALTER TABLE alunos MODIFY Estado
+varchar2(10);
+
+#remover campos
+
+ALTER TABLE alunos DROP (idade);
+
+#remover tabela
+DROP TABLE alunos;
+
+##retricoes
+#not null
+
+CREATE TABLE clientes (
+ID_clientes integer NOT NULL,
+Nome varchar(255) NOT NULL,
+Endereco varchar(255) NOT NULL,
+Idade integer
+);
+
+ALTER TABLE clientes
+MODIFY idade integer NOT NULL;
+
+##UNIQUE
+
+CREATE TABLE clientes (
+ID_clientes integer NOT NULL UNIQUE,
+Nome varchar(255) NOT NULL,
+Endereco varchar(255),
+Idade integer
+);
+
+ALTER TABLE clientes
+ADD UNIQUE (ID_clientes);
+
+
+
+#PRIMARY KEY
+
+CREATE TABLE clientes (
+ID_clientes integer NOT NULL PRIMARY KEY,
+Nome varchar(255) NOT NULL,
+Endereco varchar(255),
+Idade integer
+);
+ALTER TABLE clientes
+ADD PRIMARY KEY (ID_clientes);
+
+#FOREIGN KEY
+
+CREATE TABLE pedidos (
+ID_pedidos integer NOT NULL PRIMARY KEY,
+Qtde_pedidos integer NOT NULL,
+ID_clientes integer FOREIGN KEY REFERENCES clientes (ID_clientes)
+);
+
+ALTER TABLE pedidos
+ADD CONSTRAINT FK_ID_clientes
+FOREIGN KEY (ID_clientes) REFERENCES clientes (ID_clientes);
+
+## COMANDOS DE MANIPULAÇÃO
+
+
+#INSTRUÇÃO INSERT
+
+INSERT INTO ALUNO
+2 (id_aluno,
+3 nome_aluno,
+4 cpf_aluno,
+5 data_nasc,
+6 cidade_aluno)
+7 VALUES (3322,
+8 'Isaias Queiroz',
+9 12345678900
+10 '20/01/1990'
+11 'Campinas');
+
+1 INSERT INTO ALUNO2
+2 VALUES (3322,
+3 'Isaias Queiroz',
+4 12345678900
+5 '20/01/1990'
+6 'Campinas');
+
+
+##SLECT 
+
+SELECT campos FROM nome_da_tabela
+
+
+SELECT * FROM clientes; #TABELA TODA 
+SELECT nome, telefone FROM clientes;
+
+
+
+##UPDATE
+EXEMPLO: alteração de nome
+UPDATE ALUNO
+SET nome_aluno = 'Gregorio Martins'
+WHERE id_aluno = 3325;
+
+UPDATE ALUNO ##ALTERAÇAÕ DE VARIOS CAMPOS
+SET nome_aluno = 'Gregorio Martins da Silva'
+dataNasc_aluno = '13/07/1997',
+WHERE id_aluno = 3325
+
+## delete
+DELETE FROM ALUNO
+WHERE id_aluno = 3325;
+
+
+#RESULTADO DE CONSULTA - ORDENADO
+
+
+SELECT * FROM clientes
+ORDER BY cidade;
+
+
+SELECT * FROM clientes
+ORDER BY cidade, nome;
+
+
+SELECT * FROM clientes
+ORDER BY cidade DESC;
+
+
+#CONSULTA BASEADA EM CONDIÇÃO
+
+SELECT * FROM clientes
+WHERE codigo=1;
+
+SELECT * FROM clientes
+WHERE pais='Brasil';
+
+
+#CONSULTA BASEADA EM COMPARAÇÃO
+
+SELECT * FROM produtos
+WHERE preco = 18;
+
+
+SELECT * FROM produtos
+WHERE preco >= 30;
+
+
+
+SELECT * FROM produtos
+WHERE Price <> 18;
+
+
+
+#CONSULTA BASEADA COMPARAÇÃO
+
+SELECT * FROM produtos
+WHERE preco BETWEEN 50 AND 60;
+
+SELECT * FROM produtos
+WHERE preco NOT BETWEEN 10 AND 20;
+
+
+
+#CONSULTA BASEADA COMPARAÇÃO
+
+SELECT * FROM clientes
+WHERE cidade IN ('Campinas','Americana');
+
+SELECT * FROM clientes
+WHERE pais NOT IN ('França', 'Portugal', 'Mexico');
+
+
+#CONSULTA COM OPERADORES LÓGICOS
+SELECT * FROM clientes
+WHERE cidade
+='Campinas' AND cidade='Paulinia';
+
+SELECT * FROM clientes
+WHERE NOT cidade='Campinas';
+
+
+
